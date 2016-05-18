@@ -1,0 +1,10 @@
+// In production, enable this: server/.env
+.bin/
+.idea/
+app/.uno/
+app/build/
+server/.azk/
+server/node_modules/
+server/rethinkdb_data/
+server/npm-debug.log
+.DS_Store

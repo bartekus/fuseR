@@ -1,0 +1,108 @@
+<Page ux:Class="HomePage">
+
+    <Router ux:Dependency="router" />
+    <JavaScript File="HomePage.js" />
+
+<ClientPanel>
+
+      <EdgeNavigator ux:Name="EdgeNavigator">
+
+    		<!-- Add a panel to the left edge -->
+    		<LeftSidebar Width="300" ux:Name="leftMenu" EdgeNavigation.Edge="Left">
+    			<ActivatingAnimation>
+    				<Change mainAppTranslation.X="180" />
+    				<!-- Change to cross out -->
+    				<Change topLeftMenuTranslation.Y="0" />
+    				<Change bottomLeftMenuTranslation.Y="0" />
+    				<Change middleLeftRectangle.Opacity="0" Easing="CircularOut" />
+    				<Change topLeftMenuRotation.Degrees="45" Easing="ExponentialIn" />
+    				<Change bottomLeftMenuRotation.Degrees="-45" Easing="ExponentialIn" />
+    				<Change topLeftRectangle.Width="28" />
+    				<Change bottomLeftRectangle.Width="28" />
+    			</ActivatingAnimation>
+    		</LeftSidebar>
+
+        <!-- Add a panel to the right edge -->
+    		<RightSidebar Width="300" ux:Name="rightMenu" EdgeNavigation.Edge="Right">
+    			<ActivatingAnimation>
+    				<Change mainAppTranslation.X="-180" />
+    				<!-- Change to cross out -->
+    				<Change topRightMenuTranslation.Y="0" />
+    				<Change bottomRightMenuTranslation.Y="0" />
+    				<Change middleRightRectangle.Opacity="0" Easing="CircularOut" />
+    				<Change topRightMenuRotation.Degrees="45" Easing="ExponentialIn" />
+    				<Change bottomRightMenuRotation.Degrees="-45" Easing="ExponentialIn" />
+    				<Change topRightRectangle.Width="28" />
+    				<Change bottomRightRectangle.Width="28" />
+    			</ActivatingAnimation>
+    		</RightSidebar>
+
+    		<DockPanel Background="#fff">
+    			<!-- Use this to move the main app area with the side menu -->
+    			<Translation ux:Name="mainAppTranslation" />
+
+    			<StatusBarBackground Dock="Top" />
+    			<BottomFrameBackground Dock="Bottom" />
+
+    			<StackPanel Dock="Top">
+
+    				<!-- This is the top ledge -->
+    				<Grid ColumnData="auto,1*,auto"  Background="White">
+    					<Panel Margin="7,5,5,5" Height="32" Width="32" HitTestMode="LocalBounds">
+    						<Clicked>
+    							<Set EdgeNavigator.Active="leftMenu" />
+    						</Clicked>
+    						<Rectangle ux:Name="topLeftRectangle" Height="2" Width="26" Fill="#000">
+    							<Translation Y="-9" ux:Name="topLeftMenuTranslation" />
+    							<Rotation ux:Name="topLeftMenuRotation" />
+    						</Rectangle>
+    						<Rectangle ux:Name="middleLeftRectangle" Height="2" Width="26" Fill="#000" />
+    						<Rectangle ux:Name="bottomLeftRectangle" Height="2" Width="26" Fill="#000">
+    							<Translation Y="9" ux:Name="bottomLeftMenuTranslation" />
+    							<Rotation ux:Name="bottomLeftMenuRotation" />
+    						</Rectangle>
+    					</Panel>
+
+    					<Text FontSize="22" Alignment="VerticalCenter" TextAlignment="Center"
+    						Value="FReDb" Padding="2">
+    						<Font File="assets/fonts/AlegreyaSans-Bold.otf" />
+    					</Text>
+
+    					<!-- <Panel Margin="5,5,7,5" Height="32" Width="32" HitTestMode="LocalBounds">
+    						<Clicked>
+    							<DebugAction Message="Search clicked" />
+    						</Clicked>
+    						<Circle Height="20" Width="20">
+    							<Stroke Width="2" Brush="#000" />
+    						</Circle>
+    						<Rectangle Width="7" Height="3" Fill="#000">
+    							<Translation X="8" Y="8" />
+    							<Rotation Degrees="45" />
+    						</Rectangle>
+    					</Panel> -->
+
+              <Panel Margin="7,5,5,5" Height="32" Width="32" HitTestMode="LocalBounds">
+                <Clicked>
+                  <Set EdgeNavigator.Active="rightMenu" />
+                </Clicked>
+                <Rectangle ux:Name="topRightRectangle" Height="2" Width="26" Fill="#000">
+                  <Translation Y="-9" ux:Name="topRightMenuTranslation" />
+                  <Rotation ux:Name="topRightMenuRotation" />
+                </Rectangle>
+                <Rectangle ux:Name="middleRightRectangle" Height="2" Width="26" Fill="#000" />
+                <Rectangle ux:Name="bottomRightRectangle" Height="2" Width="26" Fill="#000">
+                  <Translation Y="9" ux:Name="bottomRightMenuTranslation" />
+                  <Rotation ux:Name="bottomRightMenuRotation" />
+                </Rectangle>
+              </Panel>
+
+    				</Grid>
+    				<Rectangle Height="1" Margin="0,5,0,0" Fill="#333c48" />
+    			</StackPanel>
+
+    		</DockPanel>
+
+    	</EdgeNavigator>
+
+</ClientPanel>
+</Page>

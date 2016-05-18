@@ -1,0 +1,16 @@
+{
+  "name": "fuse-rethinkdb-api",
+  "version": "1.0.0",
+  "description": "Fuse coupled with rethinkDB API",
+  "scripts": {
+    "install:server": "cd ./server && npm install",
+    "start:db": "cd ./server && rethinkdb --cache-size 512 --server-name rethinkdb",
+    "start:server": "cd ./server && npm start",
+    "dev:server": "cd ./server && npm run dev",
+    "dev:app": "cd ./app && fuse preview",
+    "dev:android": "cd ./app && fuse preview -t=Android",
+    "dev:ios": "cd ./app && fuse preview -t=iOS"
+  },
+  "author": "Bartek Kus <bartekus@gmail.com> (http://bartekus.com)",
+  "license": "MIT"
+}

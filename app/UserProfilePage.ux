@@ -1,0 +1,4 @@
+<Page ux:Class="UserProfilePage">
+    <Router ux:Dependency="router" />
+    <JavaScript File="UserProfilePage.js" />
+</Page>

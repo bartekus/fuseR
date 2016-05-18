@@ -1,0 +1,4 @@
+<Page ux:Class="SettingsPage">
+    <Router ux:Dependency="router" />
+    <JavaScript File="SettingsPage.js" />
+</Page>

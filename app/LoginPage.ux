@@ -1,0 +1,6 @@
+<Page ux:Class="LoginPage">
+    <Router ux:Dependency="router" />
+    <JavaScript File="LoginPage.js" />
+
+    <Button Text="Login" Clicked="{login_clicked}" />
+</Page>

@@ -1,0 +1,69 @@
+<StackPanel ux:Class="RightSidebar" Background="#212831">
+	<!-- <WhileInactive Threshold="0.4">
+		<Move Target="user" X="-180" Duration="0.2" Delay="0.3" Easing="CircularIn" />
+		<Move Target="stats" X="-180" Duration="0.2" Delay="0.2" Easing="CircularIn" />
+		<Move Target="browser" X="-180" Duration="0.2" Delay="0.15" Easing="CircularIn" />
+		<Move Target="feed" X="-180" Duration="0.2" Delay="0.1" Easing="CircularIn" />
+		<Move Target="chat" X="-180" Duration="0.2" Delay="0.05" Easing="CircularIn" />
+		<Move Target="settings" X="-180" Duration="0.2" Delay="0.01" Easing="CircularIn" />
+		<Move Target="logout" X="-180" Duration="0.2" Delay="0.005" Easing="CircularIn" />
+	</WhileInactive> -->
+
+	<!-- <Text ux:Class="Username" TextAlignment="Center" FontSize="18" TextColor="#fff" Margin="0,8,0,0">
+		<Font File="assets/fonts/AlegreyaSans-Bold.otf" />
+	</Text>
+	<Text ux:Class="Stats" TextAlignment="Center" FontSize="16" TextColor="#fed166" />
+	<Text ux:Class="Relations" TextAlignment="Center" FontSize="11" TextColor="#414f5e" />
+	<Text ux:Class="MenuLabel" TextAlignment="Center" FontSize="18" TextColor="#414f5e" Margin="0,0,0,0">
+		<Font File="assets/fonts/Lato-Bold.ttf" />
+	</Text> -->
+
+	<StatusBarBackground Background="#909498" />
+
+	<!-- <StackPanel ux:Name="user">
+		<Panel Height="20" />
+		<Circle Width="85" Height="85">
+			<ImageFill Url="http://az664292.vo.msecnd.net/files/B2MmOFAy2wjpUo71-model-045.jpg" />
+		</Circle>
+		<Username>EDWARD PRICE</Username>
+	</StackPanel>
+
+	<Grid ux:Name="stats" Alignment="HorizontalCenter" ColumnCount="3" Margin="0,10,0,15">
+		<StackPanel Width="70">
+			<Stats>2,342</Stats>
+			<Relations>Followers</Relations>
+		</StackPanel>
+		<Rectangle Height="40" Width="1">
+			<SolidColor Color="#414f5e" />
+		</Rectangle>
+		<StackPanel Width="70">
+			<Stats>3,735</Stats>
+			<Relations>Following</Relations>
+		</StackPanel>
+	</Grid> -->
+
+	<!-- <Image ux:Class="SidebarIcon" Height="22" Width="22" Margin="0,24,0,9" Color="#7a96b2" /> -->
+
+	<!-- <StackPanel>
+		<StackPanel ux:Name="browser">
+			<SidebarIcon File="assets/icon/Browser.png" />
+			<MenuLabel>NEWS</MenuLabel>
+		</StackPanel>
+		<StackPanel ux:Name="feed">
+			<SidebarIcon File="assets/icon/Feed.png" />
+			<MenuLabel>FEED</MenuLabel>
+		</StackPanel>
+		<StackPanel ux:Name="chat">
+			<SidebarIcon File="assets/icon/Chat.png" />
+			<MenuLabel>CHAT</MenuLabel>
+		</StackPanel>
+		<StackPanel ux:Name="settings">
+			<SidebarIcon File="assets/icon/Browser.png" />
+			<MenuLabel>SETTINGS</MenuLabel>
+		</StackPanel>
+		<StackPanel ux:Name="logout">
+			<SidebarIcon File="assets/icon/Browser.png" />
+			<MenuLabel>LOGOUT</MenuLabel>
+		</StackPanel>
+	</StackPanel> -->
+</StackPanel>

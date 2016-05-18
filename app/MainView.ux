@@ -1,0 +1,9 @@
+<App>
+    <Router ux:Name="router" />
+    <Navigator DefaultTemplate="login">
+        <LoginPage ux:Template="login" router="router" />
+        <HomePage ux:Template="home" router="router" />
+        <SettingsPage ux:Template="settings" router="router" />
+        <UserProfilePage ux:Template="user" router="router" />
+    </Navigator>
+</App>

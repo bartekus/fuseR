@@ -1,0 +1,35 @@
+{
+    "colors":[{
+            "colorName":"Red",
+            "hexValue":"#F44336"
+        },
+        {
+            "colorName":"Pink",
+            "hexValue":"#E91E63"
+        },
+        {
+            "colorName":"Purple",
+            "hexValue":"#9C27B0"
+        },
+        {
+            "colorName":"Deep purple",
+            "hexValue":"#673AB7"
+        },
+        {
+            "colorName":"Indigo",
+            "hexValue":"#3F51B5"
+        },
+        {
+            "colorName":"Blue",
+            "hexValue":"#2196F3"
+        },
+        {
+            "colorName":"Light blue",
+            "hexValue":"#03A9F4"
+        },
+        {
+            "colorName":"Cyan",
+            "hexValue":"#00BCD4"
+        }
+    ]
+}

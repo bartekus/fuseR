@@ -1,0 +1,29 @@
+{
+  "name": "fuse-express-rethinkdb",
+  "version": "1.0.0",
+  "description": "An Express-RethinkDB API server",
+  "main": "app.js",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "Bartek Kus",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^0.8.6",
+    "bluebird": "^3.3.5",
+    "body-parser": "^1.15.1",
+    "cors": "^2.7.1",
+    "dotenv": "^2.0.0",
+    "express": "^4.13.4",
+    "helmet": "^2.0.0",
+    "jwt-simple": "^0.5.0",
+    "moment": "^2.13.0",
+    "morgan": "^1.7.0",
+    "rethinkdb": "^2.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.2"
+  }
+}

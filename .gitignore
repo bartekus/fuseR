@@ -8,3 +8,4 @@ server/node_modules/
 server/rethinkdb_data/
 server/npm-debug.log
 .DS_Store
+npm-debug.log

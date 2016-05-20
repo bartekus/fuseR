@@ -64,7 +64,7 @@
     					</Panel>
 
     					<Text FontSize="22" Alignment="VerticalCenter" TextAlignment="Center"
-    						Value="FReDb" Padding="2">
+    						Value="App" Padding="2">
     						<Font File="assets/fonts/AlegreyaSans-Bold.otf" />
     					</Text>
 

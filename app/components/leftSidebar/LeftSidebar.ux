@@ -1,6 +1,6 @@
 <StackPanel ux:Class="LeftSidebar" Background="#212831">
 
-  <!-- <Router ux:Dependency="router" /> -->
+  <Router ux:Dependency="router" />
   <JavaScript File="LeftSidebar.js" />
 
 	<WhileInactive Threshold="0.4">

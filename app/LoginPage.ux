@@ -2,5 +2,39 @@
     <Router ux:Dependency="router" />
     <JavaScript File="LoginPage.js" />
 
-    <Button Text="Login" Clicked="{login_clicked}" />
+    <DockPanel>
+        <Text ux:Class="PrimaryColorText" TextColor="#675060" />
+        <Text ux:Class="SecondaryColorText" TextColor="#623A8E" />
+    		<TextInput ux:Class="SecondaryColorTextInput" PlaceholderColor="#023A8E" TextColor="#623A8E" CaretColor="#623A8E" />
+
+    		<float4 ux:Key="C600" ux:Value="#8869e5" />
+    		<float4 ux:Key="C700" ux:Value="#6447b3" />
+    		<float4 ux:Key="CFillFore" ux:Value="#675060" />
+
+    		<StatusBarBackground Dock="Top" />
+    		<BottomBarBackground Dock="Bottom" />
+
+        <Image Layer="Background" StretchMode="UniformToFill" ContentAlignment="Center" Opacity="1.7" Padding="-10">
+          <Blur Radius="1.31" />
+          <MultiDensityImageSource>
+            <FileImageSource File="./assets/login/bg_photo@1x.png" Density="1" />
+            <FileImageSource File="./assets/login/bg_photo@2x.png" Density="2" />
+          </MultiDensityImageSource>
+        </Image>
+
+    		<Grid Rows="2*,1*">
+    			<StackPanel Alignment="VerticalCenter">
+    				<PrimaryColorText Alignment="HorizontalCenter" FontSize="50">FuseR</PrimaryColorText>
+    				<SecondaryColorText Alignment="HorizontalCenter" Opacity=".5">Fuse Boilerplate + rethinkDB API</SecondaryColorText>
+    			</StackPanel>
+    			<StackPanel Alignment="VerticalCenter" Margin="50,0,50,0">
+    				<SecondaryColorTextInput PlaceholderText="username" Value="{username}" Padding="0, 10, 0, 10" />
+    				<SecondaryColorTextInput PlaceholderText="password" IsPassword="true" Value="{password}" Padding="0, 10, 0, 10" />
+            <DockPanel>
+    				  <Button Text="LogIn" IsEnabled="{areCredentialsValid}" Clicked="{login_clicked}" Padding="70, 10, 0, 10"></Button>
+              <Button Text="SignUp" IsEnabled="{areCredentialsValid}" Clicked="{signup_clicked}" Padding="0, 10, 70, 10"></Button>
+            </DockPanel>
+    			</StackPanel>
+    		</Grid>
+    	</DockPanel>
 </Page>

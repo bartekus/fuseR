@@ -20,16 +20,16 @@ app.use(cors());
 app.use(helmet());
 
 app.use('/', home);
-app.use('/users', users);
-app.use('/login', login);
 app.use('/colors', colors);
+app.use('/login', login);
+app.use('/users', users);
 
 app.use(function (error, request, response, next) {
     response.status(error.status || 500);
     response.json({ error: error.message });
 });
 
-var server = app.listen(3000, function () {
+var server = app.listen(3333, function () {
   var host = 'localhost'
   if (server.domain !== null) host = server.domain;
   var port = server.address().port;

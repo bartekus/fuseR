@@ -1,6 +1,6 @@
 var jwt = require('jwt-simple');
 var moment = require('moment');
-var secret = process.env.TOKEN_SECRET;
+var secret = process.env.TOKEN_SECRET || 'R!NQr09O57Xp$6DjtUCyL3m9pS07%T$Co';
 
 module.exports.generate = function (user) {
     var expires = moment().add(7, 'days').valueOf();

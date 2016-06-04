@@ -1,5 +1,5 @@
 module.exports = {
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    db: process.env.DB_NAME
+    host: process.env.DB_HOST || 'localhost',
+    port: process.env.DB_PORT || 28015,
+    db: process.env.DB_NAME || 'FuseR'
 };

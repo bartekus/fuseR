@@ -1,0 +1,54 @@
+<StateGroup ux:Name="state" Transition="Exclusive" Rest="loginButtonState">
+	<State Name="loginButtonState">
+		<Move   Target="whiteRect" RelativeTo="PositionOffset" RelativeNode="signupButton" Vector="1" Duration="0.2" DurationBack="0"/>
+		<Resize Target="whiteRect" RelativeTo="Size"           RelativeNode="signupButton" Vector="1" Duration="0.2" DurationBack="0"/>
+		<Move   Target="greenRect" RelativeTo="PositionOffset" RelativeNode="submitButtonCollapsed" Vector="1" Duration="0.2" DurationBack="0"/>
+		<Resize Target="greenRect" RelativeTo="Size"           RelativeNode="submitButtonCollapsed" Vector="1" Duration="0.2" DurationBack="0"/>
+
+		<Set whiteRect.LayoutMaster="signupButton" Delay="0.2"/>
+		<Set greenRect.LayoutMaster="submitButtonCollapsed" Delay="0.2"/>
+
+		<Set whiteRectCornerRadiusAttractor.Value="25"/>
+		<Set showGreenRect.Value="false" />
+
+		<Change startPanel.IsEnabled="true" DelayBack="0" />
+		<Set moveLogo.Value="false" />
+		<SendToBack Target="addButtonPanel" />
+	</State>
+	<State Name="signupFormState">
+		<Set whiteRectCornerRadiusAttractor.Value="5"/>
+		<Move   Target="whiteRect" RelativeTo="PositionOffset" RelativeNode="signupForm" Vector="1" Duration="0.4" Delay="0.2" DurationBack="0" Easing="CubicInOut"/>
+		<Resize Target="whiteRect" RelativeTo="Size"           RelativeNode="signupForm" Vector="1" Duration="0.4" Delay="0.2" DurationBack="0" Easing="CubicInOut"/>
+		<Move   Target="greenRect" RelativeTo="PositionOffset" RelativeNode="submitButton" Vector="1" Duration="0.4" Delay="0.5" DurationBack="0" Easing="CubicInOut"/>
+		<Resize Target="greenRect" RelativeTo="Size"           RelativeNode="submitButton" Vector="1" Duration="0.4" Delay="0.5" DurationBack="0" Easing="CubicInOut"/>
+
+		<Set whiteRect.LayoutMaster="signupForm" Delay="0.6"/>
+		<Set greenRect.LayoutMaster="submitButton" Delay="0.9"/>
+
+		<Change signupForm.IsEnabled="true" Delay="0.6" DelayBack="0"/>
+		<Set showGreenRect.Value="true" Delay="0.5"/>
+		<Set moveLogo.Value="true" />
+	</State>
+	<State Name="mainState">
+		<Move   Target="whiteRect" RelativeTo="PositionOffset" RelativeNode="mainPanel" Vector="1" Duration="0.4" Delay="0.05" Easing="CubicInOut" DurationBack="0"/>
+		<Resize Target="whiteRect" RelativeTo="Size"           RelativeNode="mainPanel" Vector="1" Duration="0.4" Delay="0.05" Easing="CubicInOut" DurationBack="0"/>
+		<Move Target="greenRect" RelativeTo="PositionOffset" RelativeNode="addButton" Vector="1" Duration="0.4" Delay="0.4" DurationBack="0" Easing="CubicInOut"/>
+		<Resize Target="greenRect" RelativeTo="Size"         RelativeNode="addButton" Vector="1" Duration="0.4" Delay="0.4" DurationBack="0" Easing="CubicInOut"/>
+
+		<Set whiteRect.LayoutMaster="mainPanel" Delay="0.45"/>
+		<Set greenRect.LayoutMaster="addButton" Delay="0.85"/>
+
+		<Change whiteRect.CornerRadius="0" Duration="0.2" DurationBack="0" />
+		<Change logoPanel.IsEnabled="false" />
+		<Scale Target="greenRect" Delay="0.9" Factor="1.2" Duration="0.2" Easing="CubicInOut"/>
+		<Set whiteRectCornerRadiusAttractor.Value="0"/>
+
+		<Change mainPanel.IsEnabled="true" Delay="0.9"/>
+		<Change topPanel.IsEnabled="true" />
+
+		<Change greenRect.Opacity="1" Duration="0" />
+		<Change addButton.IsEnabled="true" Delay="0.5"/>
+
+		<BringToFront Target="addButtonPanel" />
+	</State>
+</StateGroup>

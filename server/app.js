@@ -7,6 +7,7 @@ require('dotenv').load();
 
 var home = require('./routes/home');
 var users = require('./routes/users');
+var signup = require('./routes/signup');
 var login = require('./routes/login');
 var colors = require('./routes/colors');
 
@@ -21,6 +22,7 @@ app.use(helmet());
 
 app.use('/', home);
 app.use('/colors', colors);
+app.use('/signup', signup);
 app.use('/login', login);
 app.use('/users', users);
 

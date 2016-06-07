@@ -1,0 +1,5 @@
+<Panel ux:Class="HidingPanel" ux:Name="self" Opacity="0" IsEnabled="false" HitTestMode="LocalBoundsAndChildren">
+	<WhileEnabled>
+		<Change self.Opacity="1" Duration="0.4"/>
+	</WhileEnabled>
+</Panel>

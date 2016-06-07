@@ -28,12 +28,11 @@
     				<SecondaryColorText Alignment="HorizontalCenter" Opacity=".5">Fuse Boilerplate + rethinkDB API</SecondaryColorText>
     			</StackPanel>
     			<StackPanel Alignment="VerticalCenter" Margin="50,0,50,0">
-    				<SecondaryColorTextInput PlaceholderText="username" Value="{username}" Padding="0, 10, 0, 10" />
+          <SecondaryColorTextInput PlaceholderText="name" Value="{name}" Padding="0, 10, 0, 10" />
+    				<SecondaryColorTextInput PlaceholderText="email" Value="{email}" Padding="0, 10, 0, 10" />
     				<SecondaryColorTextInput PlaceholderText="password" IsPassword="true" Value="{password}" Padding="0, 10, 0, 10" />
-            <DockPanel>
-    				  <Button Text="LogIn" IsEnabled="{areCredentialsValid}" Clicked="{login_clicked}" Padding="70, 10, 0, 10"></Button>
-              <Button Text="SignUp" IsEnabled="{areCredentialsValid}" Clicked="{signup_clicked}" Padding="0, 10, 70, 10"></Button>
-            </DockPanel>
+  				  <Button Text="LogIn" IsEnabled="{areCredentialsValid}" Clicked="{login_clicked}" Padding="70, 10, 0, 10"></Button>
+            <Button Text="SignUp" IsEnabled="{areCredentialsAuthorized}" Clicked="{signup_clicked}" Padding="0, 10, 70, 10"></Button>
     			</StackPanel>
     		</Grid>
     	</DockPanel>

@@ -1,6 +1,7 @@
 // In production, enable this: server/.env
 .bin/
 .idea/
+.Fuse/
 app/.uno/
 app/build/
 server/.azk/

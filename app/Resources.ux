@@ -1,0 +1,8 @@
+<Panel>
+	<float4 ux:Global="Green"      ux:Value="#14FFB5"/>
+	<float4 ux:Global="Purple"     ux:Value="#5E2E91"/>
+	<float4 ux:Global="White"      ux:Value="#FFFFFF"/>
+	<float4 ux:Global="Gray"       ux:Value="#999999"/>
+	<float4 ux:Global="TopGray"    ux:Value="#9F83BD"/>
+	<float4 ux:Global="BottomGray" ux:Value="#7E58A7"/>
+</Panel>

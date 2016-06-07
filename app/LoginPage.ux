@@ -7,9 +7,16 @@
         <Text ux:Class="SecondaryColorText" TextColor="#623A8E" />
     		<TextInput ux:Class="SecondaryColorTextInput" PlaceholderColor="#023A8E" TextColor="#623A8E" CaretColor="#623A8E" />
 
-    		<float4 ux:Key="C600" ux:Value="#8869e5" />
-    		<float4 ux:Key="C700" ux:Value="#6447b3" />
-    		<float4 ux:Key="CFillFore" ux:Value="#675060" />
+        <float4 ux:Key="C600" ux:Value="#8869e5" />
+        <float4 ux:Key="C700" ux:Value="#6447b3" />
+        <float4 ux:Key="CFillFore" ux:Value="#675060" />
+
+        <float4 ux:Global="Green" ux:Value="#14FFB5" />
+        <float4 ux:Global="Purple" ux:Value="#5E2E91" />
+        <float4 ux:Global="White" ux:Value="#FFFFFF" />
+        <float4 ux:Global="Gray" ux:Value="#999999" />
+        <float4 ux:Global="TopGray" ux:Value="#9F83BD" />
+        <float4 ux:Global="BottomGray" ux:Value="#7E58A7" />
 
     		<StatusBarBackground Dock="Top" />
     		<BottomBarBackground Dock="Bottom" />
@@ -22,18 +29,156 @@
           </MultiDensityImageSource>
         </Image>
 
-    		<Grid Rows="2*,1*">
-    			<StackPanel Alignment="VerticalCenter">
-    				<PrimaryColorText Alignment="HorizontalCenter" FontSize="50">FuseR</PrimaryColorText>
-    				<SecondaryColorText Alignment="HorizontalCenter" Opacity=".5">Fuse Boilerplate + rethinkDB API</SecondaryColorText>
-    			</StackPanel>
-    			<StackPanel Alignment="VerticalCenter" Margin="50,0,50,0">
-          <SecondaryColorTextInput PlaceholderText="name" Value="{name}" Padding="0, 10, 0, 10" />
-    				<SecondaryColorTextInput PlaceholderText="email" Value="{email}" Padding="0, 10, 0, 10" />
-    				<SecondaryColorTextInput PlaceholderText="password" IsPassword="true" Value="{password}" Padding="0, 10, 0, 10" />
-  				  <Button Text="LogIn" IsEnabled="{areCredentialsValid}" Clicked="{login_clicked}" Padding="70, 10, 0, 10"></Button>
-            <Button Text="SignUp" IsEnabled="{areCredentialsAuthorized}" Clicked="{signup_clicked}" Padding="0, 10, 70, 10"></Button>
-    			</StackPanel>
-    		</Grid>
+        <ClientPanel>
+        		<HidingPanel ux:Name="topPanel">
+        			<GridLayout Rows="60,1*" />
+        			<WhileEnabled>
+        				<Change navBarTrans.Y="0" Duration="0.4" />
+        			</WhileEnabled>
+        			<Grid Columns="70,1*,70">
+
+        				<Translation ux:Name="navBarTrans" RelativeTo="Size" Y="-0.2" />
+        				<Panel HitTestMode="LocalBoundsAndChildren">
+        					<Image File="Icons/menu.png" Width="30" Height="30" />
+        					<Clicked>
+        						<Scale Factor="0.8" Duration=".15" Easing="CubicInOut" />
+        						<Set state.Active="loginButtonState" />
+        					</Clicked>
+        				</Panel>
+        				<Text Value="Feed" TextColor="White" FontSize="20" Alignment="VerticalCenter" />
+        				<Image File="Icons/search.png" Width="30" Height="30" />
+        			</Grid>
+        			<HidingPanel ux:Name="mainPanel">
+
+        				<ScrollView>
+        					<StackPanel Margin="25">
+        						<Each Items="{mockItems}">
+        							<DockPanel Height="100">
+        								<Circle Color="{}" Width="50" Height="50" Dock="Left" />
+        								<StackPanel ItemSpacing="15" Height="100" Margin="20,0" Alignment="VerticalCenter">
+        									<Rectangle Color="Gray" Height="10" Width="100%" Alignment="Left" />
+        									<Rectangle Color="Gray" Height="10" Width="80%" Alignment="Left" />
+        								</StackPanel>
+        							</DockPanel>
+        						</Each>
+        					</StackPanel>
+        				</ScrollView>
+        			</HidingPanel>
+        		</HidingPanel>
+
+            <HidingPanel ux:Name="loginForm" Width="90%" Height="45%" Offset="0%,10%">
+        			<Grid RowCount="3" Margin="30,40,30,60">
+        				<TextInput PlaceholderText="email" Value="{email}" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888" />
+        				<TextInput PlaceholderText="password" IsPassword="true" Value="{password}" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888" />
+        			</Grid>
+        			<WhileEnabled>
+        				<Change email.Opacity="1" Duration="0.4" Delay="0.15" />
+        				<Change password.Opacity="1" Duration="0.4" Delay="0.3" />
+        			</WhileEnabled>
+
+        			<Panel>
+        				<Panel ux:Name="loginButton" Width="100" Offset="0%,50%" Height="50" HitTestMode="LocalBoundsAndChildren">
+        					<Text Value="DONE" IsEnabled="{areCredentialsValid}" Clicked="{login_clicked}" Alignment="Center" TextColor="White" />
+        					<Clicked>
+        						<Set state.Active="loginButtonState" />
+        					</Clicked>
+        				</Panel>
+        				<Panel ux:Name="loginSubmitButtonCollapsed" Width="10" Offset="0%,50%" Height="10" />
+        			</Panel>
+        		</HidingPanel>
+
+        		<HidingPanel ux:Name="signupForm" Width="90%" Height="45%" Offset="0%,10%">
+        			<Grid RowCount="3" Margin="30,40,30,60">
+        				<TextInput PlaceholderText="name" Value="{name}" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888" />
+        				<TextInput PlaceholderText="email" Value="{email}" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888" />
+        				<TextInput PlaceholderText="password" IsPassword="true" Value="{password}" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888" />
+        			</Grid>
+        			<WhileEnabled>
+        				<Change name.Opacity="1" Duration="0.4" />
+        				<Change email.Opacity="1" Duration="0.4" Delay="0.15" />
+        				<Change password.Opacity="1" Duration="0.4" Delay="0.3" />
+        			</WhileEnabled>
+
+        			<Panel>
+        				<Panel ux:Name="submitButton" Width="100" Offset="0%,50%" Height="50" HitTestMode="LocalBoundsAndChildren">
+        					<Text Value="DONE" IsEnabled="{areCredentialsAuthorized}" Clicked="{signup_clicked}" Alignment="Center" TextColor="White" />
+        					<Clicked>
+        						<Set state.Active="loginButtonState" />
+        					</Clicked>
+        				</Panel>
+        				<Panel ux:Name="signupSubmitButtonCollapsed" Width="10" Offset="0%,50%" Height="10" />
+        			</Panel>
+        		</HidingPanel>
+
+        		<HidingPanel ux:Name="startPanel" Alignment="Bottom" Height="30%" Padding="15,0,15,15">
+        			<GridLayout Rows="2*,2*" />
+
+              <StackPanel Alignment="Center" Margin="20, 0, 20, 0" Orientation="Horizontal">
+
+                <Panel ux:Name="loginButton" Margin="20, 0, 20, 0" Width="120" Height="50" HitTestMode="LocalBounds">
+                  <Text Value="LogIn" IsEnabled="{areCredentialsValid}" Clicked="{login_clicked}" Alignment="Center" TextColor="#5E2E91" HitTestMode="LocalBounds" />
+                  <Clicked>
+                    <Set state.Active="signupFormState" />
+                  </Clicked>
+                </Panel>
+
+          			<Panel ux:Name="signupButton" Margin="20, 0, 20, 0" Width="120" Height="50" HitTestMode="LocalBounds">
+          				<Text Value="SignUp" IsEnabled="{areCredentialsAuthorized}" Clicked="{signup_clicked}" Alignment="Center" TextColor="#5E2E91" HitTestMode="LocalBounds" />
+          				<Clicked>
+          					<Set state.Active="signupFormState" />
+          				</Clicked>
+          			</Panel>
+
+              </StackPanel>
+
+              <Rectangle Color="BottomGray" Height="2" Width="55%" />
+              <Rectangle Color="BottomGray" Height="2" Width="30%" />
+        		</HidingPanel>
+
+        		<Panel ux:Name="addButtonPanel">
+        			<HidingPanel ux:Name="addButton" Width="50" Height="50" Alignment="BottomRight" Margin="40" HitTestMode="LocalBoundsAndChildren">
+        				<Text Value="+" FontSize="30" TextColor="White" Alignment="Center" />
+        			</HidingPanel>
+        			<Rectangle ux:Name="greenRect" Color="Green" LayoutMaster="submitButtonCollapsed" CornerRadius="25" Opacity="0">
+        				<DropShadow />
+        				<WhileTrue ux:Name="showGreenRect">
+        					<Change greenRect.Opacity="1" Duration="0.2" />
+        				</WhileTrue>
+        			</Rectangle>
+        		</Panel>
+
+            <Rectangle ux:Name="whiteRect1" Color="White" LayoutMaster="loginButton" Layer="Background" CornerRadius="25" />
+        		<Rectangle ux:Name="whiteRect2" Color="White" LayoutMaster="signupButton" Layer="Background" CornerRadius="25" />
+        		<Attractor ux:Name="whiteRectCornerRadiusAttractor1" Target="whiteRect1.CornerRadius" Value="25" />
+            <Attractor ux:Name="whiteRectCornerRadiusAttractor2" Target="whiteRect2.CornerRadius" Value="25" />
+
+        		<HidingPanel ux:Name="logoPanel" Alignment="Top" Height="70%" IsEnabled="true" HitTestMode="None" Layer="Background">
+        			<StackPanel Alignment="Center">
+        				<Image ux:Name="logo" File="Icons/mountains.png" Width="50%" />
+                <StackPanel Alignment="VerticalCenter" ux:Name="logoMockText">
+          				<PrimaryColorText Alignment="HorizontalCenter" FontSize="50">
+                    FuseR
+                  </PrimaryColorText>
+                  <Rectangle Color="TopGray" Width="60%" Height="10" CornerRadius="5" Margin="0,5,0,0" />
+                	<SecondaryColorText Alignment="HorizontalCenter" Opacity=".5" Margin="0,5,0,0">
+                    Fuse Boilerplate + rethinkDB API
+                  </SecondaryColorText>
+                  <Rectangle Color="BottomGray" Width="50%" Height="10" CornerRadius="5" Margin="0,5,0,0" />
+                </StackPanel>
+
+        			</StackPanel>
+        			<WhileTrue ux:Name="moveLogo">
+        				<Change logoMockText.Opacity="0" Duration="0.4" />
+        				<Move Target="logo" Y="-0.6" RelativeTo="Size" Duration="0.5" Delay="0.3" Easing="CubicInOut" />
+        			</WhileTrue>
+
+        			<WhileKeyboardVisible>
+        				<Change logoPanel.IsEnabled="false" />
+        			</WhileKeyboardVisible>
+        		</HidingPanel>
+
+        		<ux:Include File="StateAnimation.ux" />
+        	</ClientPanel>
+
     	</DockPanel>
 </Page>

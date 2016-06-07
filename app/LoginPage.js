@@ -85,6 +85,7 @@ function login_clicked() {
 }
 
 module.exports = {
+  mockItems: ["#FF4C81","#F9ED46","#47BDF9","#F97947","#FF4C81","#F9ED46","#47BDF9","#F97947"],
   signup_clicked: signup_clicked,
   login_clicked: login_clicked,
   name: name,

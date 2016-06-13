@@ -1,0 +1,74 @@
+<Panel ux:Class="PullDownReload" ClipToBounds="True">
+
+	<Image ux:Class="Cog" MaxHeight="200" MaxWidth="200" Alignment="Center" />
+	<Cog ux:Class="SmallCog" Color="#3e64b7" File="Assets/cog1_white.png" Width="60" Height="60" />
+	<Cog ux:Class="BigCog" Color="#3562c4" File="Assets/cog2_white.png" Width="120" Height="120" />
+
+	<!-- places all cog wheels and move rotates them so they fit together -->
+	<Panel ux:Name="cogPanel" Background="#183A6F" Alignment="Top" Dock="Top" Height="0" MinHeight="0">
+		<SmallCog ux:Name="cog1">
+			<Rotation ux:Name="cog1Rotation" />
+		</SmallCog>
+		<BigCog ux:Name="cog2" Offset="60,-60">
+			<Translation ux:Name="cog2Trans" Y="-100" />
+			<Rotation ux:Name="cog2Rotation" />
+		</BigCog>
+		<BigCog ux:Name="cog3" Offset="-60,60">
+			<Translation ux:Name="cog3Trans" Y="100" />
+			<Rotation Degrees="10" />
+			<Rotation ux:Name="cog3Rotation" />
+		</BigCog>
+		<BigCog ux:Name="cog4" Offset="130,30">
+			<Translation ux:Name="cog4Trans" Y="100" />
+			<Rotation Degrees="5" />
+			<Rotation ux:Name="cog4Rotation" />
+		</BigCog>
+		<BigCog ux:Name="cog5" Offset="-100, -47">
+			<Translation ux:Name="cog5Trans" Y="-100" />
+			<Rotation Degrees="8" />
+			<Rotation ux:Name="cog5Rotation" />
+		</BigCog>
+	</Panel>
+
+	<!-- set the hight of cogPanel so it stays open while loading -->
+	<WhileTrue ux:Name="retainSpace">
+		<Change cogPanel.MinHeight="75" Duration="0" DurationBack="0.3" Easing="CircularIn" />
+	</WhileTrue>
+
+	<!-- Rotate the wheels as we pull down -->
+	<ScrollingAnimation Range="SnapMin">
+		<Change cogPanel.Height="150" Duration="1" />
+		<Change cog1Rotation.Degrees="200" Duration="1" />
+		<Change cog2Rotation.Degrees="-93" Duration="1" />
+		<Change cog3Rotation.Degrees="-93" Duration="1" />
+		<Change cog4Rotation.Degrees="93" Duration="1" />
+		<Change cog5Rotation.Degrees="93" Duration="1" />
+	</ScrollingAnimation>
+
+	<!-- Move the big wheels when pulled past threshold -->
+	<Timeline ux:Name="moveCogsIntoPlace">
+		<Change cog2Trans.Y="0" Duration="0.6" DurationBack="0.2" Easing="CircularOut" />
+		<Change cog3Trans.Y="0" Duration="0.6" DurationBack="0.2" Easing="CircularOut" />
+		<Change cog4Trans.Y="0" Duration="0.6" DurationBack="0.2" Easing="CircularOut" />
+		<Change cog5Trans.Y="0" Duration="0.6" DurationBack="0.2" Easing="CircularOut" />
+	</Timeline>
+
+
+	<PullToReload IsLoading="{isLoading}" ReloadHandler="{reloadHandler}">
+		<State ux:Binding="Pulling">
+			<!-- animate elements while pulling here -->
+		</State>
+		<State ux:Binding="PulledPastThreshold">
+			<PlayTo Progress="1" Target="moveCogsIntoPlace" />
+		</State>
+		<State ux:Binding="Loading">
+			<Change retainSpace.Value="true" DurationBack="0.5" />
+			<Spin Target="cog1" Frequency="0.53125" />
+			<Spin Target="cog2" Frequency="-0.25" />
+			<Spin Target="cog3" Frequency="-0.25" />
+			<Spin Target="cog4" Frequency="0.25" />
+			<Spin Target="cog5" Frequency="0.25" />
+			<PlayTo Target="moveCogsIntoPlace" Direction="Backward" Progress="0" />
+		</State>
+	</PullToReload>
+</Panel>

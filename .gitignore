@@ -4,6 +4,8 @@
 .Fuse/
 app/.uno/
 app/build/
+node_modules/
+rethinkdb_data/
 server/.azk/
 server/node_modules/
 server/rethinkdb_data/

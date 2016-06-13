@@ -1,0 +1,23 @@
+<!-- 
+This sample shows how to get the device locale and then display that language, if supported,
+or fallback to the app's default language using a custom `NativeModule` called `Localization`. -->
+
+<ClientPanel>
+
+  <Localization ux:Global="Localization" />
+
+	<JavaScript File="MainView.js" />
+	<ux:Include File="Locales.ux" />
+	<StackPanel Alignment="VerticalCenter" ItemSpacing="10">
+		<Text Value="{Resource keyWelcome}" TextAlignment="Center" />
+		<Button Text="{Resource keySignIn}" />
+		<WrapPanel Alignment="HorizontalCenter">
+			<Text Value="App Locale:" />
+			<Text Value="{locale}" />
+		</WrapPanel>
+		<WrapPanel Alignment="HorizontalCenter">
+			<Text Value="Device Locale:" />
+			<Text Value="{deviceLocale}" />
+		</WrapPanel>
+	</StackPanel>
+</ClientPanel>

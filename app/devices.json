@@ -16,6 +16,20 @@
 		"PhysicalPixelsPerPixel" : 0.8695652173913
 	},
 	{
+		"Name" : "iPhone 2G, 3G, 3GS",
+		"Width" : 320,
+		"Height" : 480,
+		"PixelsPerPoint": 1,
+		"PhysicalPixelsPerInch": 163
+	},
+	{
+		"Name" : "iPhone 4, 4s",
+		"Width" : 640,
+		"Height" : 960,
+		"PixelsPerPoint" : 2,
+		"PhysicalPixelsPerInch": 326
+	},
+	{
 		"Name" : "iPhone 5/5S",
 		"Width" : 640,
 		"Height" : 1136,
@@ -53,4 +67,38 @@
 		"PhysicalPixelsPerInch": 281,
 		"DefaultOrientation": "Landscape"
 	},
+	{
+		"Name" : "Nexus 10",
+		"Width" : 1600,
+		"Height" : 2560,
+		"PixelsPerPoint": 2,
+		"PhysicalPixelsPerInch": 300
+	},
+	{
+		"Name" : "Low PPI 1920 x 1080",
+		"Width" : 1920,
+		"Height" : 1080,
+		"PixelsPerPoint": 1,
+		"PhysicalPixelsPerPixel": 1,
+		"PhysicalPixelsPerInch": 72,
+		"DefaultOrientation" : "Landscape"
+	},
+	{
+		"Name" : "Low PPI 1440 x 900",
+		"Width" : 1440,
+		"Height" : 900,
+		"PixelsPerPoint": 1,
+		"PhysicalPixelsPerPixel": 1,
+		"PhysicalPixelsPerInch": 72,
+		"DefaultOrientation" : "Landscape"
+	},
+	{
+		"Name" : "Low PPI 1280 x 720",
+		"Width" : 1280,
+		"Height" : 720,
+		"PixelsPerPoint": 1,
+		"PhysicalPixelsPerPixel": 1,
+		"PhysicalPixelsPerInch": 72,
+		"DefaultOrientation": "Landscape"
+	}
 ]

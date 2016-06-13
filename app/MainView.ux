@@ -1,9 +1,24 @@
-<App>
+<App ClearColor="1,1,1,1">
+
+		<Panel ux:Name="FullWindow" Layer="Overlay" />
+		<ResourceObject Key="FullWindow" Value="FullWindow" />
     <Router ux:Name="router" />
+
     <Navigator DefaultTemplate="login">
-        <LoginPage ux:Template="login" router="router" />
-        <HomePage ux:Template="home" router="router" />
-        <SettingsPage ux:Template="settings" router="router" />
-        <UserProfilePage ux:Template="user" router="router" />
+        <LoginPage ux:Template="login"
+                   router="router" />
+        <OnboardingPage ux:Template="onboarding"
+                        router="router" />
+        <HomePage ux:Template="home"
+                  router="router" />
+        <SettingsPage ux:Template="settings"
+                      router="router" />
+        <UserProfilePage ux:Template="user"
+                         router="router" />
     </Navigator>
+
+		<Panel>
+			<ModalPage />
+		</Panel>
+
 </App>

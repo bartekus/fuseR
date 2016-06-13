@@ -1,0 +1,98 @@
+<Page ux:Class="Stopwatch" Background="#ddd">
+
+  <Font ux:Global="RobotoLight" File="assets/Roboto-Light.ttf" />
+	<JavaScript File="Stopwatch.js" />
+  <Fuse.iOS.StatusBarConfig Style="Light" />
+  <ImageFill File="assets/background.png"/>
+  
+  <Stopwatch ux:Global="Stopwatch" />
+
+
+	<DockPanel>
+		<Text ux:Class="FadeText" ux:Name="self" TextAlignment="Center" Alignment="Center" Font="RobotoLight">
+			<AddingAnimation>
+				<Change self.Opacity="0" Delay="0.2" Duration="0.2"/>
+			</AddingAnimation>
+			<RemovingAnimation>
+				<Change self.Opacity="0" Duration="0.2"/>
+			</RemovingAnimation>
+		</Text>
+
+		<Panel Dock="Top" Height="60">
+			<LinearGradient StartPoint="0,0" EndPoint="1,0">
+				<GradientStop Offset="0" Color="#3E4D86" />
+				<GradientStop Offset="1" Color="#395C8A" />
+			</LinearGradient>
+			<StackPanel Alignment="Center">
+				<StatusBarBackground DockPanel.Dock="Top" />
+				<FadeText Alignment="Center" TextColor="#7B9DFE">STOPWATCH</FadeText>
+			</StackPanel>
+		</Panel>
+		<ScrollView Dock="Fill" SnapMinTransform="false">
+			<StackPanel>
+				<StackPanel>
+					<WatchFace Margin="30,40,30,30" Dock="Top" Width="250" Height="250">
+						<FadeText Value="{timeString}" Alignment="Center" TextColor="#fff" Font="RobotoLight" FontSize="50"/>
+						<Panel Margin="30">
+							<Panel Clicked="{addLapOrReset}" Alignment="Bottom">
+								<Grid HitTestMode="LocalBoundsAndChildren" Rows="auto,25">
+									<Panel Height="25" Width="25" Grid.Row="0">
+										<Image File="assets/Refresh.png"/>
+									</Panel>
+									<Match Value="{running}">
+										<Case Bool="false">
+											<FadeText Value="RESET" Grid.Row="1" FontSize="12" TextColor="#fff"/>
+										</Case>
+										<Case Bool="true">
+											<FadeText Value="LAP" Grid.Row="1" FontSize="12" TextColor="#fff"/>
+										</Case>
+									</Match>
+								</Grid>
+								<Clicked>
+									<Scale Factor="0.8" Duration="0.05" DurationBack="0.15" Easing="CircularInOut"/>
+								</Clicked>
+							</Panel>
+						</Panel>
+					</WatchFace>
+
+					<Button  Width="250" Height="50" Clicked="{stopStart}">
+						<Match Value="{running}">
+							<Case Bool="false">
+								<FadeText Value="START" TextColor="#999"/>
+							</Case>
+							<Case Bool="true">
+								<FadeText Value="STOP" TextColor="#999"/>
+							</Case>
+						</Match>
+						<Rectangle Layer="Background" CornerRadius="30" Fill="#00FFFF"/>
+						<Clicked>
+							<Scale Factor="0.9" Duration="0.06" Easing="CircularInOut"/>
+						</Clicked>
+					</Button>
+				</StackPanel>
+
+				<StackPanel Margin="20,40">
+					<Each Items="{laps}">
+						<Panel Height="50" Clicked="{removeLap}" HitTestMode="LocalBoundsAndChildren">
+							<DockPanel>
+								<FadeText Alignment="Center" FontSize="24" TextColor="#fff" Dock="Left" Value="{title}"/>
+								<FadeText Alignment="Center" FontSize="24" TextColor="#fff" Dock="Right" Value="{time}"/>
+							</DockPanel>
+							<Rectangle Fill="#8FBFE8" Height="1" Alignment="Bottom"/>
+							<AddingAnimation>
+								<Move Y="-1" RelativeTo="Size" Duration="0.3"/>
+							</AddingAnimation>
+							<RemovingAnimation>
+								<Move X="1.4" RelativeTo="ParentSize" Duration="0.3"/>
+							</RemovingAnimation>
+							<LayoutAnimation>
+								<Move Y="1" RelativeTo="LayoutChange" Duration="0.3" Easing="CircularInOut"/>
+							</LayoutAnimation>
+						</Panel>
+					</Each>
+				</StackPanel>
+			</StackPanel>
+		</ScrollView>
+	</DockPanel>
+
+</Page>

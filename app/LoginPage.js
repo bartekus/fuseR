@@ -76,7 +76,7 @@ function login_clicked() {
       // Do something with the result
       if (status === 200 && response_ok === true) {
         debug_log("\n\tLogin successful" + "\n\tname: " + responseObject.name + "\n\temail: " + responseObject.email + "\n\ttoken: " + responseObject.token);
-        router.goto("home");
+        router.goto("onboarding");
       }
   }).catch(function(err) {
       // An error occured parsing Json

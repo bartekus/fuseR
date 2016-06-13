@@ -1,20 +1,34 @@
-function settings_clicked()
-{
-    // TODO: validate login credentials
-
-    router.push("settings");
-}
-
 var Observable = require("FuseJS/Observable");
 
-var data = Observable();
+function Person(picture){
+	this.picture = picture;
+}
 
-fetch('http://az664292.vo.msecnd.net/files/P6FteBeij9A7jTXL-edgenavresponse.json')
-.then(function(response) { return response.json(); })
-.then(function(responseObject) { data.value = responseObject; });
+function Item(time, ampm, title, project, people){
+	this.time = time;
+	this.ampm = ampm;
+	this.title = title;
+	this.project = project;
+	this.people = people;
+}
 
+var items = Observable(
+	new Item(8, "AM", "Finish Home Screen", "Use Macaw", Observable()),
+	new Item(11, "AM", "Lunch Break", "", Observable()),
+	new Item(2, "PM", "Finish prototype", "InVision", [new Person("profile1"), new Person("profile2"), new Person("profile3")])
+);
 
-module.exports = {
-  settings_clicked: settings_clicked,
-  data: data
+var itemsView = items.map(function(item, index){
+	return {
+		item : item, delay : index * 0.08,
+		lineDelay : (items.length - index + 1) * 0.1,
+		isLast : index === items.length - 1,
+		hasTitle : item.title.length > 0,
+		hasProject : item.project.length > 0,
+		hasPeople : item.people.length > 0
+	};
+});
+
+module.exports =  {
+	items: itemsView
 };

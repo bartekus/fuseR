@@ -1,0 +1,46 @@
+<!-- A modal confirmation screen
+
+This example shows how to create a modal confirmation screen by using the `AlternateRoot` feature.
+
+The basic concept is to declare where you'd like to add a modal child.
+In this example we declare the `FullWindow` panel that occupies the full screen space of the app.
+Then we attach it to a resource named the same using `ResourceObject`.
+
+On the `OtherPage.ux` the `AlternateRoot` has a `ParentNode="{Resource FullWindow}"`.
+This says the child of this `AlternateRoot` will become children of the `FullWindow` panel.
+This allows us to keep our confirmation code local to where it's used, but place the actual UI elsewhere in the tree. -->
+
+<Panel ux:Class="ModalPage">
+	<Button Text="Delete" Alignment="Center">
+		<Clicked>
+			<Set ModalConfirm.IsEnabled="true"/>
+		</Clicked>
+	</Button>
+
+	<!-- Toggling the status of the AlternateRoot.IsEnabled will display/hide our "modal" dialog.
+		You could alternately wrap this in another `While...` trigger. -->
+	<AlternateRoot IsEnabled="false" ParentNode="{Resource FullWindow}" ux:Name="ModalConfirm">
+		<Panel Color="1,0.8,0.8,0.9">
+			<StackPanel Alignment="Center" Padding="10">
+				<Rectangle Layer="Background"  Color="1,1,0.98,1">
+					<Stroke Width="1" Color="0,0,0,1"/>
+				</Rectangle>
+
+				<Text>Are you sure you want to delete it?</Text>
+
+				<Button Text="Yes, Delete">
+					<Clicked>
+						<Set ModalConfirm.IsEnabled="false"/>
+						<!-- perform action -->
+					</Clicked>
+				</Button>
+
+				<Button Text="Whoa, no!">
+					<Clicked>
+						<Set ModalConfirm.IsEnabled="false"/>
+					</Clicked>
+				</Button>
+			</StackPanel>
+		</Panel>
+	</AlternateRoot>
+</Panel>

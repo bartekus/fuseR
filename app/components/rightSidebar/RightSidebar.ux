@@ -1,69 +1,144 @@
-<StackPanel ux:Class="RightSidebar" Background="#212831">
-	<!-- <WhileInactive Threshold="0.4">
-		<Move Target="user" X="-180" Duration="0.2" Delay="0.3" Easing="CircularIn" />
-		<Move Target="stats" X="-180" Duration="0.2" Delay="0.2" Easing="CircularIn" />
-		<Move Target="browser" X="-180" Duration="0.2" Delay="0.15" Easing="CircularIn" />
-		<Move Target="feed" X="-180" Duration="0.2" Delay="0.1" Easing="CircularIn" />
-		<Move Target="chat" X="-180" Duration="0.2" Delay="0.05" Easing="CircularIn" />
-		<Move Target="settings" X="-180" Duration="0.2" Delay="0.01" Easing="CircularIn" />
-		<Move Target="logout" X="-180" Duration="0.2" Delay="0.005" Easing="CircularIn" />
-	</WhileInactive> -->
 
-	<!-- <Text ux:Class="Username" TextAlignment="Center" FontSize="18" TextColor="#fff" Margin="0,8,0,0">
-		<Font File="assets/fonts/AlegreyaSans-Bold.otf" />
-	</Text>
-	<Text ux:Class="Stats" TextAlignment="Center" FontSize="16" TextColor="#fed166" />
-	<Text ux:Class="Relations" TextAlignment="Center" FontSize="11" TextColor="#414f5e" />
-	<Text ux:Class="MenuLabel" TextAlignment="Center" FontSize="18" TextColor="#414f5e" Margin="0,0,0,0">
-		<Font File="assets/fonts/Lato-Bold.ttf" />
-	</Text> -->
+<StackPanel ux:Class="RightSidebar"
+            Background="#212831">
 
 	<StatusBarBackground Background="#909498" />
 
-	<!-- <StackPanel ux:Name="user">
-		<Panel Height="20" />
-		<Circle Width="85" Height="85">
-			<ImageFill Url="http://az664292.vo.msecnd.net/files/B2MmOFAy2wjpUo71-model-045.jpg" />
-		</Circle>
-		<Username>EDWARD PRICE</Username>
-	</StackPanel>
+	<Panel>
+		<float4 ux:Global="teamsColor"
+		        ux:Value="#75AE30" />
+		<float4 ux:Global="gradsColor"
+		        ux:Value="#ff8887" />
+  </Panel>
 
-	<Grid ux:Name="stats" Alignment="HorizontalCenter" ColumnCount="3" Margin="0,10,0,15">
-		<StackPanel Width="70">
-			<Stats>2,342</Stats>
-			<Relations>Followers</Relations>
-		</StackPanel>
-		<Rectangle Height="40" Width="1">
-			<SolidColor Color="#414f5e" />
-		</Rectangle>
-		<StackPanel Width="70">
-			<Stats>3,735</Stats>
-			<Relations>Following</Relations>
-		</StackPanel>
-	</Grid> -->
+			<Panel Dock="Top"
+			       Height="60" >
+				<Rectangle ux:Name="indicator"
+				           CornerRadius="30"
+									 Color="teamsColor"
+									 LayoutMaster="teamsPanel"
+									 Margin="0,10"
+									 Width="100%"
+									 ZOffset="0.1"/>
+				<Grid ColumnCount="3"
+				      Margin="-50,0">
+					<Panel ux:Name="teamsPanel"
+					       Column="1"
+								 ColumnSpan="2"/>
+					<Panel ux:Name="gradsPanel"
+					       Column="2"
+								 ColumnSpan="3"/>
+				</Grid>
 
-	<!-- <Image ux:Class="SidebarIcon" Height="22" Width="22" Margin="0,24,0,9" Color="#7a96b2" /> -->
+				<Grid ZOffset="1"
+				      Margin="40,0">
+					<Column ux:Name="teamsColumn"
+					        Width="1"
+									WidthMetric="Proportion"/>
+					<Column ux:Name="gradsColumn"
+					        Width="1"
+									WidthMetric="Proportion"/>
 
-	<!-- <StackPanel>
-		<StackPanel ux:Name="browser">
-			<SidebarIcon File="assets/icon/Browser.png" />
-			<MenuLabel>NEWS</MenuLabel>
-		</StackPanel>
-		<StackPanel ux:Name="feed">
-			<SidebarIcon File="assets/icon/Feed.png" />
-			<MenuLabel>FEED</MenuLabel>
-		</StackPanel>
-		<StackPanel ux:Name="chat">
-			<SidebarIcon File="assets/icon/Chat.png" />
-			<MenuLabel>CHAT</MenuLabel>
-		</StackPanel>
-		<StackPanel ux:Name="settings">
-			<SidebarIcon File="assets/icon/Browser.png" />
-			<MenuLabel>SETTINGS</MenuLabel>
-		</StackPanel>
-		<StackPanel ux:Name="logout">
-			<SidebarIcon File="assets/icon/Browser.png" />
-			<MenuLabel>LOGOUT</MenuLabel>
-		</StackPanel>
-	</StackPanel> -->
+					<Text ux:Class="TabHeader"
+					      TextColor="#fff"
+								Alignment="CenterLeft"
+								Opacity="0"
+								Margin="20,0,0,0"
+								MinWidth="100"/>
+					<Image ux:Class="TabIcon"
+					       Width="25"
+								 Height="25" />
+
+					<Panel HitTestMode="LocalBounds">
+						<Grid Columns="auto,1*"
+						      Margin="30,0"
+									Alignment="Left">
+							<TabIcon ux:Name="tColumn"
+							         File="assets/play.png"
+											 Color="teamsColor"/>
+							<TabHeader ux:Name="teamsHeader"
+							           Value="Teams"/>
+
+						</Grid>
+						<Clicked>
+							<Set rightsidenav.Active="teams" />
+						</Clicked>
+					</Panel>
+					<Panel HitTestMode="LocalBounds">
+						<Grid Columns="auto,1*"
+						      Margin="30,0"
+									Alignment="Left">
+							<TabIcon ux:Name="gColumn"
+							         File="assets/person.png"
+											 Color="gradsColor" />
+							<TabHeader ux:Name="gradsHeader"
+							           Value="Grads"/>
+						</Grid>
+						<Clicked>
+							<Set rightsidenav.Active="grads" />
+						</Clicked>
+					</Panel>
+				</Grid>
+			</Panel>
+
+			<PageControl ux:Name="rightsidenav"
+			             TransitionEasing="BackOut">
+				<Attractor ux:Name="indicatorColorAttractor"
+				           Target="indicator.Color"
+									 Value="teamsColor" />
+				<Rectangle ux:Name="bgColor"
+				           Layer="Background"
+									 Color="teamsColor"
+									 Opacity="0.12"/>
+				<Attractor ux:Name="bgColorAttractor"
+				           Target="bgColor.Color"
+									 Value="teamsColor" />
+
+
+				<WhileTrue ux:Name="shrinkIndicatorWidth">
+					<Change indicator.Width="100"
+					        Duration="0.25"/>
+				</WhileTrue>
+
+				<Image ux:Class="PagePlaceholder"
+				       Margin="8,10,8,0"
+							 StretchMode="UniformToFill"
+							 ContentAlignment="Top"/>
+
+				<Page ux:Name="teams">
+					<PagePlaceholder File="assets/screen3.png" />
+					<WhileActive Threshold="0.5">
+						<Set shrinkIndicatorWidth.Value="true" />
+						<Set indicatorColorAttractor.Value="teamsColor" />
+						<Set bgColorAttractor.Value="teamsColor" />
+
+					</WhileActive>
+					<ActivatingAnimation>
+						<Change teamsHeader.Opacity="1" />
+						<Change teamsColumn.Width="2" />
+						<Change tColumn.Color="#fff" />
+					</ActivatingAnimation>
+				</Page>
+				<Page ux:Name="grads">
+					<PagePlaceholder File="assets/screen4.png" />
+					<WhileActive Threshold="0.5">
+						<Set shrinkIndicatorWidth.Value="false" />
+						<Set indicatorColorAttractor.Value="gradsColor" />
+						<Set bgColorAttractor.Value="gradsColor" />
+					</WhileActive>
+					<ActivatingAnimation Scale="1">
+						<Move Target="indicator"
+						      X="1"
+									RelativeTo="PositionOffset"
+									RelativeNode="gradsPanel"/>
+					</ActivatingAnimation>
+					<ActivatingAnimation>
+						<Change gradsHeader.Opacity="1" />
+						<Change gradsColumn.Width="2" />
+						<Change gColumn.Color="#fff" />
+					</ActivatingAnimation>
+				</Page>
+			</PageControl>
+
+
 </StackPanel>

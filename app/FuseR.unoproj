@@ -2,9 +2,18 @@
   "RootNamespace":"",
   "Packages": [
   	"Fuse",
-  	"FuseJS"
+  	"FuseJS",
+    "Fuse.Controls",
+    "Fuse.Controls.MapView",
+    "Fuse.Maps",
+    "Fuse.GeoLocation"
   ],
   "Includes": [
     "*"
-  ]
+  ],
+  "Android": {
+    "Geo": {
+        "ApiKey": "AIzaSyBp2HLiJp1Vz4WgL7hAJrVLMKaWiKX_4Gc"
+    }
+}
 }

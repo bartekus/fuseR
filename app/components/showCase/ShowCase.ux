@@ -1,0 +1,228 @@
+<ClientPanel ux:Class="ShowCase">
+
+		<JavaScript File="ShowCase.js" />
+
+		<FileImageSource File="assets/Canada.png"
+                     ux:Key="Canada"/>
+		<FileImageSource File="assets/Iceland.png"
+                     ux:Key="Iceland"/>
+		<FileImageSource File="assets/Norway.png"
+                     ux:Key="Norway"/>
+		<FileImageSource File="assets/Taiwan.png"
+                     ux:Key="Taiwan"/>
+		<FileImageSource File="assets/Thailand.png"
+                     ux:Key="Thailand"/>
+		<FileImageSource File="assets/Turkey.png"
+                     ux:Key="Turkey"/>
+
+		<FileImageSource File="assets/faces/model-001.jpg"
+                     ux:Key="Jamie" />
+		<FileImageSource File="assets/faces/model-002.jpg"
+                     ux:Key="Marcus" />
+		<FileImageSource File="assets/faces/model-003.jpg"
+                     ux:Key="John" />
+		<FileImageSource File="assets/faces/model-004.jpg"
+                     ux:Key="Jake" />
+		<FileImageSource File="assets/faces/model-005.jpg"
+                     ux:Key="Natalie" />
+		<FileImageSource File="assets/faces/model-006.jpg"
+                     ux:Key="Fred" />
+		<FileImageSource File="assets/faces/model-007.jpg"
+                     ux:Key="Tony" />
+		<FileImageSource File="assets/faces/model-008.jpg"
+                     ux:Key="Marie" />
+		<FileImageSource File="assets/faces/model-009.jpg"
+                     ux:Key="Kristina" />
+		<FileImageSource File="assets/faces/model-010.jpg"
+                     ux:Key="Alec" />
+
+		<Panel ux:Class="ShowCaseCard"
+           ux:Name="self"
+           Opacity="0.4">
+			<Scaling ux:Name="pageScaling"
+               Factor="0.95" />
+
+			<ActivatingAnimation>
+				<Change self.Opacity="1"
+                Duration="0.5"/>
+				<Change pageScaling.Factor="1"
+                Duration="0.5" />
+			</ActivatingAnimation>
+			<EnteringAnimation Scale="0.5">
+				<Move X="-1.4"
+              RelativeTo="ParentSize"
+              Duration="0.5"/>
+			</EnteringAnimation>
+			<ExitingAnimation Scale="0.5">
+				<Move X="1.4"
+              RelativeTo="ParentSize"
+              Duration="0.5"/>
+			</ExitingAnimation>
+
+			<SwipeGesture ux:Name="swipe"
+                    Direction="Up"
+                    Type="Active"/>
+			<SwipingAnimation Source="swipe">
+				<Move Target="topPanel"
+              Y="-0.3"
+              RelativeTo="Size"
+              Duration="0.5" />
+				<Change bottomPanelScaling.X="1"
+                Duration="0.5"/>
+				<Change bottomPanelScaling.Y="1"
+                Duration="0.5"/>
+				<Change bottomPanel.Opacity="1"
+                Duration="0.5" />
+			</SwipingAnimation>
+			<WhileInactive Threshold="0.2">
+				<SetSwipeActive Target="swipe"
+                        Value="false" />
+			</WhileInactive>
+
+			<Panel ux:Name="topPanel"
+             Width="60%"
+             Height="50%">
+				<Rectangle CornerRadius="5"
+                   Layer="Background">
+					<LinearGradient StartPoint="0,0"
+                          EndPoint="0,1">
+						<GradientStop Offset="0"
+                          Color="#0004" />
+						<GradientStop Offset="0.25"
+                          Color="#0000" />
+						<GradientStop Offset="0.7"
+                          Color="#0000" />
+						<GradientStop Offset="0.85"
+                          Color="#0007" />
+						<GradientStop Offset="1"
+                          Color="#0007" />
+					</LinearGradient>
+				</Rectangle>
+				<Text Value="{item.name}"
+              FontSize="24"
+              TextColor="#ddd"
+              Alignment="HorizontalCenter"
+              Margin="10">
+					<DropShadow />
+				</Text>
+				<Grid ColumnCount="3"
+              Margin="20"
+              Alignment="Bottom">
+					<Text Value="{item.lat}"
+                FontSize="10"
+                TextColor="#fff"/>
+					<Image File="assets/icons/location.png"
+                 Width="13"
+                 Height="13"/>
+					<Text Value="{item.long}"
+                FontSize="10"
+                TextColor="#fff"
+                Alignment="Right"/>
+				</Grid>
+				<Rectangle ux:Name="topPanelRect"
+                   Layer="Background"
+                   CornerRadius="5">
+					<ImageFill Source="{DataToResource item.image}"
+                     StretchMode="UniformToFill"/>
+				</Rectangle>
+
+				<DropShadow/>
+			</Panel>
+
+			<Panel ux:Name="bottomPanel"
+             Width="70%"
+             Height="60%"
+             Opacity="0">
+				<Rectangle Layer="Background"
+                   Color="#eee"
+                   CornerRadius="5"/>
+				<Scaling ux:Name="bottomPanelScaling"
+                 Y="0.8"
+                 X="0.85"/>
+
+				<Grid Rows="20,20,1*"
+              ColumnCount="2"
+              Alignment="Bottom"
+              Height="30%"
+              Padding="20,10">
+					<Text TextColor="#444"
+                FontSize="14"
+                Row="0"
+                Column="0"
+                ColumnSpan="2"
+                Value="{item.location}"/>
+					<Text TextColor="#444"
+                FontSize="14"
+                Row="1"
+                Column="0"
+						    Value="{item.no}"
+                Alignment="VerticalCenter"/>
+
+					<StackPanel Orientation="Horizontal"
+                      Row="1"
+                      Column="1"
+                      Alignment="CenterRight">
+						<StackPanel Orientation="Horizontal">
+							<Each Count="{item.stars}">
+								<Star Width="14"
+                      Height="14"
+                      Margin="1"
+                      Fill="#99f"/>
+							</Each>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<Each Count="{item.starsRest}">
+								<Star Width="14"
+                      Height="14"
+                      Margin="1"
+                      Fill="#999"/>
+							</Each>
+						</StackPanel>
+					</StackPanel>
+
+					<Grid ColumnCount="2"
+                ColumnSpan="2"
+                Row="2"
+                Column="0">
+						<StackPanel Orientation="Horizontal">
+							<Each Items="{item.people}">
+								<Circle Width="30"
+                        Height="30"
+                        Fill="Red"
+                        Margin="0,0,-6,0">
+									<Stroke Brush="#ddd"
+                          Width="2"/>
+									<ImageFill Source="{DataToResource}" />
+								</Circle>
+							</Each>
+						</StackPanel>
+						<StackPanel Alignment="CenterRight"
+                        ItemSpacing="2">
+							<Circle Width="4"
+                      Height="4"
+                      Fill="#aaa" />
+							<Circle Width="4"
+                      Height="4"
+                      Fill="#aaa" />
+							<Circle Width="4"
+                      Height="4"
+                      Fill="#aaa" />
+						</StackPanel>
+					</Grid>
+				</Grid>
+				<DropShadow />
+			</Panel>
+		</Panel>
+
+		<Panel>
+			<LinearNavigation>
+				<NavigationMotion ux:Name="nav" GotoEasing="QuadraticOut" GotoDuration="0.3" />
+			</LinearNavigation>
+			<SwipeNavigate SwipeDirection="Left"/>
+
+			<Each Items="{pagesView}">
+				<Card />
+			</Each>
+		</Panel>
+
+</ClientPanel>

@@ -1,0 +1,23 @@
+<DockPanel Background="#6793F9">
+
+  <JavaScript File="PullDownReload.js" />
+
+		<StatusBarBackground Dock="Top" />
+		<Panel Dock="Top" Height="60" Background="#5276CA">
+			<Text Alignment="Center" TextColor="#fff" FontSize="20">Pull to reload</Text>
+		</Panel>
+		<Panel>
+			<ScrollView SnapMinTransform="false">
+				<DockPanel>
+					<CogWheelReload Dock="Top" />
+					<StackPanel Background="#fff">
+						<DropShadow ux:Name="dropShadow" Color="#333" Distance="10" Size="10" Angle="180" />
+						<Each Count="15">
+							<Panel Margin="0,0,0,2" Height="70" Background="#ddd" />
+						</Each>
+					</StackPanel>
+				</DockPanel>
+			</ScrollView>
+		</Panel>
+		<BottomBarBackground Dock="Bottom" />
+	</DockPanel>

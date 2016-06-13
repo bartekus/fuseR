@@ -1,0 +1,12 @@
+{
+  "Packages": [
+    "Fuse",
+    "FuseJS"
+  ],
+  "Includes": [
+    "MainView.ux:UXFile",
+    "WatchFace.ux:UXFile",
+    "assets/Stopwatch.uno:SourceFile",
+    "assets/Roboto-Light.ttf:File"
+  ]
+}

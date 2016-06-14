@@ -55,9 +55,9 @@
                Padding="-10">
           <Blur Radius="1.31" />
           <MultiDensityImageSource>
-            <FileImageSource File="./assets/login/bg_photo@1x.png"
+            <FileImageSource File="./assets/bg_photo@1x.png"
                              Density="1" />
-            <FileImageSource File="./assets/login/bg_photo@2x.png"
+            <FileImageSource File="./assets/bg_photo@2x.png"
                              Density="2" />
           </MultiDensityImageSource>
         </Image>
@@ -339,7 +339,7 @@
         			<StackPanel Alignment="Center">
 
         				<Image ux:Name="logo"
-                       File="assets/icons/mountains.png"
+                       File="assets/mountains.png"
                        Width="50%" />
                 <StackPanel ux:Name="logoMockText"
                             Alignment="VerticalCenter">

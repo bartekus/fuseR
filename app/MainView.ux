@@ -13,12 +13,8 @@
                   router="router" />
         <SettingsPage ux:Template="settings"
                       router="router" />
-        <UserProfilePage ux:Template="user"
+        <UserProfilePage ux:Template="userProfile"
                          router="router" />
     </Navigator>
-
-		<Panel>
-			<ModalPage />
-		</Panel>
 
 </App>

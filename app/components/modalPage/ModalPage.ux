@@ -11,7 +11,8 @@ This says the child of this `AlternateRoot` will become children of the `FullWin
 This allows us to keep our confirmation code local to where it's used, but place the actual UI elsewhere in the tree. -->
 
 <Panel ux:Class="ModalPage">
-	<Button Text="Delete" Alignment="Center">
+
+	<Button Text="Modal" Alignment="Center">
 		<Clicked>
 			<Set ModalConfirm.IsEnabled="true"/>
 		</Clicked>

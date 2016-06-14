@@ -1,6 +1,6 @@
-<ClientPanel ux:Class="ShowCase">
+<ClientPanel ux:Class="ShowcaseCarrusel">
 
-		<JavaScript File="ShowCase.js" />
+		<JavaScript File="ShowcaseCarrusel.js" />
 
 		<FileImageSource File="assets/Canada.png"
                      ux:Key="Canada"/>
@@ -15,28 +15,28 @@
 		<FileImageSource File="assets/Turkey.png"
                      ux:Key="Turkey"/>
 
-		<FileImageSource File="assets/faces/model-001.jpg"
-                     ux:Key="Jamie" />
-		<FileImageSource File="assets/faces/model-002.jpg"
-                     ux:Key="Marcus" />
-		<FileImageSource File="assets/faces/model-003.jpg"
-                     ux:Key="John" />
-		<FileImageSource File="assets/faces/model-004.jpg"
-                     ux:Key="Jake" />
-		<FileImageSource File="assets/faces/model-005.jpg"
-                     ux:Key="Natalie" />
-		<FileImageSource File="assets/faces/model-006.jpg"
-                     ux:Key="Fred" />
-		<FileImageSource File="assets/faces/model-007.jpg"
-                     ux:Key="Tony" />
-		<FileImageSource File="assets/faces/model-008.jpg"
-                     ux:Key="Marie" />
-		<FileImageSource File="assets/faces/model-009.jpg"
-                     ux:Key="Kristina" />
-		<FileImageSource File="assets/faces/model-010.jpg"
-                     ux:Key="Alec" />
+		<FileImageSource File="assets/faces/model001.jpg"
+                     ux:Key="Jamie"/>
+		<FileImageSource File="assets/faces/model002.jpg"
+                     ux:Key="Marcus"/>
+		<FileImageSource File="assets/faces/model003.jpg"
+                     ux:Key="John"/>
+		<FileImageSource File="assets/faces/model004.jpg"
+                     ux:Key="Jake"/>
+		<FileImageSource File="assets/faces/model005.jpg"
+                     ux:Key="Natalie"/>
+		<FileImageSource File="assets/faces/model006.jpg"
+                     ux:Key="Fred"/>
+		<FileImageSource File="assets/faces/model007.jpg"
+                     ux:Key="Tony"/>
+		<FileImageSource File="assets/faces/model008.jpg"
+                     ux:Key="Marie"/>
+		<FileImageSource File="assets/faces/model009.jpg"
+                     ux:Key="Kristina"/>
+		<FileImageSource File="assets/faces/model010.jpg"
+                     ux:Key="Alec"/>
 
-		<Panel ux:Class="ShowCaseCard"
+		<Panel ux:Class="ShowcaseCard"
            ux:Name="self"
            Opacity="0.4">
 			<Scaling ux:Name="pageScaling"
@@ -192,7 +192,7 @@
                         Margin="0,0,-6,0">
 									<Stroke Brush="#ddd"
                           Width="2"/>
-									<ImageFill Source="{DataToResource}" />
+									<ImageFill Source="{DataToResource}"/>
 								</Circle>
 							</Each>
 						</StackPanel>
@@ -200,13 +200,13 @@
                         ItemSpacing="2">
 							<Circle Width="4"
                       Height="4"
-                      Fill="#aaa" />
+                      Fill="#aaa"/>
 							<Circle Width="4"
                       Height="4"
-                      Fill="#aaa" />
+                      Fill="#aaa"/>
 							<Circle Width="4"
                       Height="4"
-                      Fill="#aaa" />
+                      Fill="#aaa"/>
 						</StackPanel>
 					</Grid>
 				</Grid>
@@ -216,12 +216,12 @@
 
 		<Panel>
 			<LinearNavigation>
-				<NavigationMotion ux:Name="nav" GotoEasing="QuadraticOut" GotoDuration="0.3" />
+				<NavigationMotion ux:Name="showcaseCarruselNav" GotoEasing="QuadraticOut" GotoDuration="0.3"/>
 			</LinearNavigation>
 			<SwipeNavigate SwipeDirection="Left"/>
 
-			<Each Items="{pagesView}">
-				<Card />
+			<Each Items="{showcasePagesView}">
+				<ShowcaseCard />
 			</Each>
 		</Panel>
 

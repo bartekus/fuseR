@@ -8,23 +8,23 @@
 <!--< Resources Start >-->
     <Panel ux:Class="Resources">
     	<Image ux:Class="Chat"
-             File="assets/icons/chat.png"/>
+             File="assets/chat.png"/>
     	<Image ux:Class="Feed"
-             File="assets/icons/feed.png"/>
+             File="assets/feed.png"/>
     	<Image ux:Class="Marker"
-             File="assets/icons/marker.png"/>
+             File="assets/marker.png"/>
     	<Image ux:Class="Mountain"
-             File="assets/icons/mountain.png"/>
+             File="assets/mountain.png"/>
     	<Image ux:Class="MountainFill"
-             File="assets/icons/mountainFill.png" />
+             File="assets/mountainFill.png" />
     	<Image ux:Class="Phone"
-             File="assets/icons/phone.png"/>
+             File="assets/phone.png"/>
     	<Image ux:Class="PhoneHands"
-             File="assets/icons/phoneHands.png"/>
+             File="assets/phoneHands.png"/>
     	<Image ux:Class="Tags"
-             File="assets/icons/tags.png"/>
+             File="assets/tags.png"/>
     	<Image ux:Class="Map"
-             File="assets/icons/map.png" />
+             File="assets/map.png" />
     </Panel>
 <!--< Resources End >-->
 

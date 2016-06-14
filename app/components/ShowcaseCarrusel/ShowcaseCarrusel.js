@@ -22,7 +22,7 @@ pages.add(new Page("THAILAND", "Thailand", 15, 102, "A white silky beach in Thai
 pages.add(new Page("TURKEY", "Turkey", 40, 34, "Turkish house with a mountain view.", 10241, 3, ["Tony", "Natalie", "Jake", "John"]));
 
 
-var pagesView = pages.map(function(item, index){
+var showcasePagesView = pages.map(function(item, index){
 	return {
 		item: item,
 		index: index
@@ -30,5 +30,5 @@ var pagesView = pages.map(function(item, index){
 });
 
 module.exports = {
-	pagesView: pagesView
+	showcasePagesView: showcasePagesView
 };

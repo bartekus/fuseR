@@ -2,7 +2,7 @@ function getStarted_clicked()
 {
     // TODO: validate login credentials
 
-    router.push("home");
+    router.goto("home");
 }
 
 module.exports = {

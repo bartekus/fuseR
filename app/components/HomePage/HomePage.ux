@@ -56,7 +56,7 @@
   			<Translation ux:Name="mainAppTranslation" />
 
         <ClientPanel>
-      		<ImageFill File="assets/home/bg.jpg"
+      		<ImageFill File="assets/bg.jpg"
                      StretchMode="UniformToFill" />
 
           <StackPanel Dock="Top">
@@ -100,7 +100,7 @@
                     Value="FuseR"
                     Padding="2"
                     TextColor="#fff">
-                <Font File="assets/fonts/AlegreyaSans-Bold.otf" />
+                <Font File="assets/AlegreyaSans-Bold.otf" />
               </Text>
     <!--< Nav Title End >-->
 
@@ -291,27 +291,34 @@
                           Alignment="BottomRight"
                           Offset="100,100" />
 
-            <Grid Rows="1.3*,2*,6*">
-
-
+            <Grid Rows="1.5*,2*,6*">
 
               <Grid Columns="1*"
                     Dock="Top"
                     Padding="20">
-                <Panel Width="60"
-                       Height="60"
-                       Alignment="Right">
-                  <SmallAvatarIcon Width="40"
-                                   Height="40"/>
-                  <Clicked>
-                   <Toggle Target="hideShowCase" />
-                    <Toggle Target="showListItems" />
-                    <Toggle Target="hideListHeadlines" />
-                    <Scale Factor="0.9"
-                           Duration="0.5"
-                           Easing="QuadraticInOut" />
-                  </Clicked>
-                </Panel>
+                <StackPanel>
+                  <Panel Width="60"
+                         Height="60"
+                         Alignment="Right">
+
+                    <SmallAvatarIcon Width="40"
+                                     Height="40"/>
+                    <Clicked>
+                      <Toggle Target="showListItems" />
+                      <Toggle Target="hideListHeadlines" />
+                      <Scale Factor="0.9"
+                             Duration="0.5"
+                             Easing="QuadraticInOut" />
+                    </Clicked>
+                  </Panel>
+                  <!--< Modal Start >-->
+                  <Panel Width="60"
+                         Height="20"
+                         Alignment="Right">
+                    <ModalPage />
+                  </Panel>
+                  <!--< Modal End >-->
+                </StackPanel>
               </Grid>
 
               <Grid Columns="2*,1*"
@@ -384,34 +391,6 @@
                 </WhileFalse>
               </Panel>
             </Grid>
-
-  <!--< ShowCase Start >-->
-            <WhileTrue ux:Name="hideShowCase"
-                        Bypass="Standard">
-              <DockPanel>
-              <Scaling ux:Name="pageScaling"
-                       Factor="0.95" />
-        			<ActivatingAnimation>
-        				<Change showCase.Opacity="1"
-                        Duration="0.5"/>
-        				<Change pageScaling.Factor="1"
-                        Duration="0.5" />
-        			</ActivatingAnimation>
-        			<EnteringAnimation Scale="0.5">
-        				<Move X="-1.4"
-                      RelativeTo="Size"
-                      Duration="0.5"/>
-        			</EnteringAnimation>
-        			<ExitingAnimation Scale="0.5">
-        				<Move X="1.4"
-                      RelativeTo="Size"
-                      Duration="0.5"/>
-        			</ExitingAnimation>
-
-              <ShowCase ux:Name="showCase" />
-              </DockPanel>
-            </WhileTrue>
-  <!--< ShowCase End >-->
 
           </Panel>
   <!--< Home Page Body Start >-->

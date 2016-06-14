@@ -13,26 +13,26 @@
 	</Panel>
 
 	<FileImageSource ux:Key="profile1"
-	                 File="assets/home/avatarcalendar3.png"/>
+	                 File="assets/avatarcalendar3.png"/>
 	<FileImageSource ux:Key="profile2"
-	                 File="assets/home/avatarcalendar2.png"/>
+	                 File="assets/avatarcalendar2.png"/>
 	<FileImageSource ux:Key="profile3"
-	                 File="assets/home/avatarcalendar.png" />
+	                 File="assets/avatarcalendar.png" />
 
 	<Image ux:Class="Icon" />
 
 	<Icon ux:Class="ClockIcon"
-	      File="assets/home/icon_clock.png" />
+	      File="assets/icon_clock.png" />
 	<Icon ux:Class="TalkIcon"
-	      File="assets/home/icon_talk.png" />
+	      File="assets/icon_talk.png" />
 	<Icon ux:Class="LocationIcon"
-	      File="assets/home/icon_location.png" />
+	      File="assets/icon_location.png" />
 	<Icon ux:Class="SunnyIcon"
-	      File="assets/home/icon_sunny.png" />
+	      File="assets/icon_sunny.png" />
  	<Icon ux:Class="SmallAvatarIcon"
-	      File="assets/home/small_avatar.png" />
+	      File="assets/small_avatar.png" />
 	<Icon ux:Class="HamburgerIcon"
-	      File="assets/home/icon_hamburger.png" />
+	      File="assets/icon_hamburger.png" />
 
 	<Text ux:Class="DefaultText"
 	      TextColor="#fffd" />

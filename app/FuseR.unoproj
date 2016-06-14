@@ -10,10 +10,5 @@
   ],
   "Includes": [
     "*"
-  ],
-  "Android": {
-    "Geo": {
-        "ApiKey": "AIzaSyBp2HLiJp1Vz4WgL7hAJrVLMKaWiKX_4Gc"
-    }
-}
+  ]
 }

@@ -21,7 +21,7 @@ function signup_clicked() {
     password: password.value
   };
 
-  fetch('http://192.168.0.41:3333/signup', {
+  fetch('http://localhost:3333/signup', {
       method: 'POST',
       headers: { "Content-Type":"application/json" },
       body: JSON.stringify(requestObject)
@@ -56,7 +56,7 @@ function login_clicked() {
     password: password.value
   };
 
-  fetch('http://192.168.0.41:3333/login', {
+  fetch('http://localhost:3333/login', {
       method: 'POST',
       headers: { "Content-Type":"application/json" },
       body: JSON.stringify(requestObject)

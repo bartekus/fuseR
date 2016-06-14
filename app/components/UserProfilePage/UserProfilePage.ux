@@ -4,7 +4,14 @@
 
     <Fuse.iOS.StatusBarConfig ux:Name="statusBarConfig" Style="Dark"/>
     	<Panel>
+        <StackPanel Clicked="{go_back_clicked}">
+          <Text FontSize="20"
+                Value="Go Back"
+                Padding="2">
+          </Text>
+        </StackPanel>
     		<MultiLayoutPanel ux:Name="headerPanel" HitTestMode="None" Alignment="Top" Height="260">
+
     			<Placeholder ux:Name="overBackgroundLayout">
     				<Image ux:Name="facePicture"  File="assets/avatar.png" Alignment="BottomCenter"
     					   Width="150" Height="150" Offset="0,75"/>

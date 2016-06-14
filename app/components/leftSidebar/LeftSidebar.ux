@@ -7,9 +7,9 @@
 	<WhileInactive Threshold="0.4">
 		<Move Target="user" X="-180" Duration="0.2" Delay="0.3" Easing="CircularIn" />
 		<Move Target="stats" X="-180" Duration="0.2" Delay="0.2" Easing="CircularIn" />
-		<Move Target="browser" X="-180" Duration="0.2" Delay="0.15" Easing="CircularIn" />
+		<Move Target="chat" X="-180" Duration="0.2" Delay="0.15" Easing="CircularIn" />
 		<Move Target="feed" X="-180" Duration="0.2" Delay="0.1" Easing="CircularIn" />
-		<Move Target="chat" X="-180" Duration="0.2" Delay="0.05" Easing="CircularIn" />
+		<Move Target="profile" X="-180" Duration="0.2" Delay="0.05" Easing="CircularIn" />
 		<Move Target="settings" X="-180" Duration="0.2" Delay="0.01" Easing="CircularIn" />
 		<Move Target="logout" X="-180" Duration="0.2" Delay="0.005" Easing="CircularIn" />
 	</WhileInactive>
@@ -50,10 +50,6 @@
 	<Image ux:Class="SidebarIcon" Height="22" Width="22" Margin="0,24,0,9" Color="#7a96b2" />
 
 	<StackPanel>
-		<StackPanel ux:Name="browser">
-			<SidebarIcon File="assets/icon/Browser.png" />
-			<MenuLabel>NEWS</MenuLabel>
-		</StackPanel>
 		<StackPanel ux:Name="feed">
 			<SidebarIcon File="assets/icon/Feed.png" />
 			<MenuLabel>FEED</MenuLabel>
@@ -62,7 +58,11 @@
 			<SidebarIcon File="assets/icon/Chat.png" />
 			<MenuLabel>CHAT</MenuLabel>
 		</StackPanel>
-		<StackPanel ux:Name="settings">
+    <StackPanel ux:Name="profile" Clicked="{user_profile_clicked}">
+			<SidebarIcon File="assets/icon/Browser.png" />
+			<MenuLabel>PROFILE</MenuLabel>
+		</StackPanel>
+		<StackPanel ux:Name="settings" Clicked="{settings_clicked}">
 			<SidebarIcon File="assets/icon/Browser.png" />
 			<MenuLabel>SETTINGS</MenuLabel>
 		</StackPanel>

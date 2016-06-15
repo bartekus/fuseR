@@ -1,8 +1,6 @@
 var bcrypt = require('bcrypt');
 var Promise = require('bluebird');
 var rdb = require('../lib/rethink');
-
-var dbConfig = require('../config/database');
 var token = require('../lib/token');
 
 var hash_password = function (password) {

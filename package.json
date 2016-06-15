@@ -1,9 +1,12 @@
 {
   "name": "fuser",
-  "version": "0.2.0",
-  "description": "Fusetools coupled with rethinkDB API",
+  "version": "0.2.1",
+  "private": true,
+  "description": "FuseR - Fuse Starter Kit with RethinkDB API",
   "scripts": {
-    "install:server": "cd ./server && npm install",
+    "install": "cd ./server && npm install",
+    "createDemoAdmin": "cd ./server && npm run setup",
+    "testDemoAdminToken": "cd ./server && npm test",
     "start:db": "cd ./server && rethinkdb --cache-size 512 --server-name rethinkdb",
     "start:server": "cd ./server && npm start",
     "dev:server": "cd ./server && npm run dev",

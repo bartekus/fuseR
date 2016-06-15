@@ -81,7 +81,10 @@ Afterwards create 'users' table using `+Add Table` button.
 
 ### Troubleshooting
 #### Installation
-Please ensure that you have python installed and are able to execute: `npm install -g node-gyp@latest`
+Please ensure that you have python installed and are able to execute:
+
+`npm install -g node-gyp@latest`
+
 To install python:
 
   * On Unix:

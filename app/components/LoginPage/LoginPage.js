@@ -84,6 +84,19 @@ function login_clicked() {
   });
 }
 
+function TaskItem(text, timeSlot, i, image){
+	this.text = Observable(text);
+	this.timeSlot = Observable(timeSlot);
+	this.delay = Observable(i * 0.05);
+	this.image = image;
+}
+
+var items = Observable(
+	new TaskItem("New subpage for Janet", "8 - 10am", 1, "home1"),
+	new TaskItem("Catch up with Tom", "11 - 12am Hangouts", 2, "home2"),
+	new TaskItem("Lunch with Diane", "12am Restaurant", 3, "home3")
+);
+
 module.exports = {
   mockItems: ["#FF4C81","#F9ED46","#47BDF9","#F97947","#FF4C81","#F9ED46","#47BDF9","#F97947"],
   signup_clicked: signup_clicked,
@@ -92,5 +105,6 @@ module.exports = {
   email: email,
   password: password,
   areCredentialsValid: areCredentialsValid,
-  areCredentialsAuthorized: areCredentialsAuthorized
+  areCredentialsAuthorized: areCredentialsAuthorized,
+	items: items
 };

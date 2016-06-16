@@ -1,9 +1,3 @@
-<!--<
-      Login Page is divided into three states:
-      > Initial State - Logo with 'LogIn' & 'SignUp' Buttons
-      > SignUp State - Signup form with 'done' and 'x' buttons
-      > LogIn State - LogIn form with 'done' and 'x' buttons
-                       >-->
 <Page ux:Class="LoginPage">
 
 <!--< Router & Logic Start >-->
@@ -11,618 +5,410 @@
     <JavaScript File="LoginPage.js" />
 <!--< Router & Logic End >-->
 
-<!--< Body Start >-->
+	<Fuse.iOS.StatusBarConfig Style="Light" />
+	<FileImageSource File="assets/avatar1.png"
+                   ux:Key="home1"/>
+	<FileImageSource File="assets/avatar2.png"
+                   ux:Key="home2"/>
+	<FileImageSource File="assets/avatar3.png"
+                   ux:Key="home3"/>
 
-    <!-- Define All Our Colors Start -->
-        <Text ux:Class="PrimaryColorText"
-              TextColor="#675060" />
-        <Text ux:Class="SecondaryColorText"
-              TextColor="#623A8E" />
-    		<TextInput ux:Class="SecondaryColorTextInput"
-                   PlaceholderColor="#023A8E"
-                   TextColor="#623A8E"
-                   CaretColor="#623A8E" />
-        <float4 ux:Key="C600"
-                ux:Value="#8869e5" />
-        <float4 ux:Key="C700"
-                ux:Value="#6447b3" />
-        <float4 ux:Key="CFillFore"
-                ux:Value="#675060" />
-        <float4 ux:Global="Green"
-                ux:Value="#14FFB5" />
-        <float4 ux:Global="Red"
-                ux:Value="#ff0000" />
-        <float4 ux:Global="Purple"
-                ux:Value="#5E2E91" />
-        <float4 ux:Global="White"
-                ux:Value="#FFFFFF" />
-        <float4 ux:Global="Gray"
-                ux:Value="#999999" />
-        <float4 ux:Global="TopGray"
-                ux:Value="#9F83BD" />
-        <float4 ux:Global="BottomGray"
-                ux:Value="#7E58A7" />
-    <!-- Define All Our Colors End -->
+	<DockPanel ux:Class="TaskItem"
+             Height="80"
+             Margin="1"
+             Background="#fff"
+             Padding="15,20">
+		<Image Width="50"
+           Height="50"
+           Dock="Left"
+           Source="{DataToResource image}" />
+		<Grid RowCount="2"
+          Margin="40,0">
+			<Text Value="{text}" />
+			<Text Value="{timeSlot}"
+            TextColor="#999"/>
+		</Grid>
+	</DockPanel>
 
-    		<StatusBarBackground Dock="Top" />
-    		<BottomBarBackground Dock="Bottom" />
+	<UserEvent Name="ToggleLoggedIn" />
+	<Panel>
+		<Circle ux:Name="plusButton"
+            Width="60"
+            Height="60"
+            Alignment="BottomRight"
+            Margin="20"
+            Fill="#FF3366"
+            Opacity="0"
+            IsEnabled="false">
+			<Panel ux:Name="cross">
+				<Rectangle Width="30%"
+                   Height="2"
+                   Fill="#fff"/>
+				<Rectangle Height="30%"
+                   Width="2"
+                   Fill="#fff"/>
+			</Panel>
 
-    <!-- Background Image Start -->
-        <Image Layer="Background"
-               StretchMode="UniformToFill"
-               ContentAlignment="Center"
-               Opacity="1.7"
-               Padding="-10">
-          <Blur Radius="1.31" />
-          <MultiDensityImageSource>
-            <FileImageSource File="./assets/bg_photo@1x.png"
-                             Density="1" />
-            <FileImageSource File="./assets/bg_photo@2x.png"
-                             Density="2" />
-          </MultiDensityImageSource>
-        </Image>
-    <!-- Background Image End -->
+			<Translation ux:Name="plusButtonTranslation"
+                   RelativeTo="ParentSize" />
+			<Scaling ux:Name="plusButtonScaling"
+               Factor="0.1"/>
 
-        <ClientPanel>
+			<WhileTrue ux:Name="showPlusButton">
+				<Change plusButtonScaling.Factor="1"
+                Duration="0.4"
+                Easing="CircularInOut"
+                DurationBack="0"/>
+			</WhileTrue>
 
-<!--< Login Page Start >-->
-            <HidingPanel ux:Name="loginForm"
-                         Width="90%"
-                         Height="45%"
-                         Offset="0%,10%">
-        			<Grid RowCount="3" Margin="30,40,30,60">
-        				<TextInput ux:Name="loginEmail"
-                           PlaceholderText="email"
-                           Value="{email}"
-                           Opacity="1"
-                           Alignment="VerticalCenter"
-                           PlaceholderColor="#888" />
-        				<TextInput ux:Name="loginPassword"
-                           PlaceholderText="password"
-                           IsPassword="true"
-                           Value="{password}"
-                           Opacity="1"
-                           Alignment="VerticalCenter"
-                           PlaceholderColor="#888" />
-        			</Grid>
-        			<WhileEnabled>
-        				<Change loginEmail.Opacity="1"
-                        Duration="0.4"
-                        Delay="0.15" />
-        				<Change loginPassword.Opacity="1"
-                        Duration="0.4"
-                        Delay="0.3" />
-        			</WhileEnabled>
-        			<Panel>
-        				<Panel ux:Name="loginSubmitButton"
-                       Width="100"
-                       Offset="0%,50%"
-                       Height="50"
-                       HitTestMode="LocalBoundsAndChildren">
-        					<Text Value="DONE"
-                        IsEnabled="{areCredentialsValid}"
-                        Clicked="{login_clicked}"
-                        Alignment="Center"
-                        TextColor="White" />
-        					<Clicked>
-        						<Set state.Active="loginFormState" />
-        					</Clicked>
-        				</Panel>
-                <Panel ux:Name="loginCancelButton"
-                       Width="50"
-                       Offset="50%,-50%"
-                       Height="50"
-                       HitTestMode="LocalBoundsAndChildren">
-        					<Text Value="X"
-                        Alignment="Center"
-                        TextColor="White" />
-        					<Clicked>
-        						<Set state.Active="initialState" />
-        					</Clicked>
-        				</Panel>
-                <Panel ux:Name="loginCancelButtonCollapsed"
-                       Width="10"
-                       Offset="45%,-55%"
-                       Height="10" />
-                <Panel ux:Name="loginSubmitButtonCollapsed"
-                       Width="10"
-                       Offset="0%,50%"
-                       Height="10" />
-        			</Panel>
-        		</HidingPanel>
-<!-- Login Page End -->
+			<Clicked>
+				<Toggle Target="loading"
+                Delay="0.2" />
+				<RaiseUserEvent Name="ToggleLoggedIn"
+                        Delay="0.3"/>
+				<Change scalePlusButton.Value="true" />
+				<Nothing Duration="0.8" />
+			</Clicked>
 
-<!-- Sign Up Page Start -->
-        		<HidingPanel ux:Name="signupForm"
-                         Width="90%"
-                         Height="45%"
-                         Offset="0%,10%">
-        			<Grid RowCount="3" Margin="30,40,30,60">
-        				<TextInput ux:Name="signupName"
-                           PlaceholderText="name"
-                           Value="{name}"
-                           Opacity="1"
-                           Alignment="VerticalCenter"
-                           PlaceholderColor="#888" />
-        				<TextInput ux:Name="signupEmail"
-                           PlaceholderText="email"
-                           Value="{email}"
-                           Opacity="1"
-                           Alignment="VerticalCenter"
-                           PlaceholderColor="#888" />
-        				<TextInput ux:Name="signupPassword"
-                           PlaceholderText="password"
-                           IsPassword="true"
-                           Value="{password}"
-                           Opacity="1"
-                           Alignment="VerticalCenter"
-                           PlaceholderColor="#888" />
-        			</Grid>
-        			<WhileEnabled>
-        				<Change signupName.Opacity="1"
-                        Duration="0.4" />
-        				<Change signupEmail.Opacity="1"
-                        Duration="0.4"
-                        Delay="0.15" />
-        				<Change signupPassword.Opacity="1"
-                        Duration="0.4"
-                        Delay="0.3" />
-        			</WhileEnabled>
-        			<Panel>
-        				<Panel ux:Name="signupSubmitButton"
-                       Width="100"
-                       Offset="0%,50%"
-                       Height="50"
-                       HitTestMode="LocalBoundsAndChildren">
-        					<Text Value="DONE"
-                        IsEnabled="{areCredentialsAuthorized}"
-                        Clicked="{signup_clicked}"
-                        Alignment="Center"
-                        TextColor="White" />
-        					<Clicked>
-        						<Set state.Active="signupFormState" />
-        					</Clicked>
-        				</Panel>
-                <Panel ux:Name="signupCancelButton"
-                       Width="50"
-                       Offset="50%,-50%"
-                       Height="50"
-                       HitTestMode="LocalBoundsAndChildren">
-        					<Text Value="X"
-                        Alignment="Center"
-                        TextColor="White" />
-        					<Clicked>
-        						<Set state.Active="initialState" />
-        					</Clicked>
-        				</Panel>
-                <Panel ux:Name="signupCancelButtonCollapsed"
-                       Width="10"
-                       Offset="45%,-55%"
-                       Height="10" />
-        				<Panel ux:Name="signupSubmitButtonCollapsed"
-                       Width="10"
-                       Offset="0%,50%"
-                       Height="10" />
-        			</Panel>
-        		</HidingPanel>
-<!-- Sign Up Page End -->
+			<WhileTrue ux:Name="scalePlusButton">
+				<Change cross.Opacity="0" Duration="0.1" />
+				<Change plusButtonScaling.Factor="15"
+                Duration="0.6"
+                Easing="CircularInOut" />
+				<Change plusButtonTranslation.Y="-0.5"
+                Duration="0.6"
+                Easing="CircularInOut"
+                DurationBack="0"/>
+				<Change plusButtonTranslation.X="-0.5"
+                Duration="0.6"
+                Easing="CircularInOut"
+                DurationBack="0"/>
+			</WhileTrue>
+		</Circle>
 
-<!-- Main Page Starts -->
-        		<HidingPanel ux:Name="startPanel"
-                         Alignment="Bottom"
-                         Height="30%"
-                         Padding="15,0,15,15">
-        			<GridLayout Rows="2*,2*" />
-              <StackPanel Alignment="Center"
-                          Margin="20, 0, 20, 0"
-                          Orientation="Horizontal">
+		<Panel ux:Name="loggedInView"
+           Opacity="0"
+           IsEnabled="false">
+			<Grid RowCount="2">
+				<DockPanel Background="#ddd"
+                   Row="1">
+					<StackPanel>
+						<Each Items="{items}">
+							<TaskItem>
+								<OnUserEvent EventName="ToggleLoggedIn">
+									<Toggle Target="animateItem" />
+								</OnUserEvent>
+								<WhileTrue ux:Name="animateItem">
+									<Change trans.Y="0"
+                          Duration="0.8"
+                          Delay="{delay}"
+                          Easing="QuadraticInOut"/>
+									<Change scaling.Factor="1"
+                          Duration="0.6"
+                          Delay="{delay}"
+                          Easing="QuadraticInOut" />
+								</WhileTrue>
+								<Translation ux:Name="trans"
+                             Y="-0.5"
+                             RelativeTo="Size" />
+  								<Scaling ux:Name="scaling"
+                           Factor="1.2" />
+							</TaskItem>
+						</Each>
+					</StackPanel>
 
-                <Panel ux:Name="loginButton"
-                       Margin="20, 0, 20, 0"
-                       Width="120"
-                       Height="50"
-                       HitTestMode="LocalBounds">
-                  <Text Value="LogIn"
-                        IsEnabled="{areCredentialsValid}"
-                        Clicked="{login_clicked}"
-                        Alignment="Center"
-                        TextColor="#5E2E91"
-                        HitTestMode="LocalBounds" />
-                  <Clicked>
-                    <Set state.Active="loginFormState" />
-                  </Clicked>
-                </Panel>
+					<Grid ColumnCount="7"
+                RowCount="2"
+                Height="100"
+                Dock="Top"
+                Margin="1"
+                Padding="15"
+                Background="#fff">
+						<Text ux:Class="CalendarText"
+                  FontSize="16"
+                  Alignment="Center" />
 
-          			<Panel ux:Name="signupButton"
-                       Margin="20, 0, 20, 0"
-                       Width="120" Height="50"
-                       HitTestMode="LocalBounds">
-          				<Text Value="SignUp"
-                        IsEnabled="{areCredentialsAuthorized}"
-                        Clicked="{signup_clicked}"
-                        Alignment="Center"
-                        TextColor="#5E2E91"
-                        HitTestMode="LocalBounds" />
-          				<Clicked>
-          					<Set state.Active="signupFormState" />
-          				</Clicked>
-          			</Panel>
+						<CalendarText Value="SUN"/>
+						<CalendarText Value="MON"/>
+						<CalendarText Value="TUE"/>
+						<CalendarText Value="WED"/>
+						<CalendarText Value="THU"/>
+						<CalendarText Value="FRI"/>
+						<CalendarText Value="SAT"/>
+						<CalendarText Value="7" />
+						<CalendarText Value="8" />
+						<CalendarText Value="9" />
+						<CalendarText Value="10" />
+						<CalendarText Value="11" />
+						<CalendarText Value="12" />
+						<CalendarText Value="13" />
 
-              </StackPanel>
-              <Rectangle Color="BottomGray"
-                         Height="2"
-                         Width="55%" />
-              <Rectangle Color="BottomGray"
-                         Height="2"
-                         Width="30%" />
-        		</HidingPanel>
-<!-- Main Page End -->
+						<Translation ux:Name="weekTranslation"
+                         Y="-0.5" RelativeTo="Size" />
+						<Scaling ux:Name="weekScaling"
+                     Factor="1.2" />
+					</Grid>
+				</DockPanel>
 
-<!-- Setting Start -->
-        		<Panel ux:Name="buttonPanel">
-        			<Rectangle ux:Name="greenButtonOkLogin"
-                         Color="Green"
-                         LayoutMaster="loginSubmitButtonCollapsed"
-                         CornerRadius="25"
-                         Opacity="0">
-              <DropShadow />
-              <WhileTrue ux:Name="showgreenButtonOkLogin">
-                <Change greenButtonOkLogin.Opacity="1"
-                        Duration="0.2" />
-              </WhileTrue>
-              </Rectangle>
+				<Grid Rows="1*,auto,100"
+              Row="0">
+					<Image Layer="Background"
+                 File="assets/headerhome.png"
+                 Color="#ddd"
+                 StretchMode="UniformToFill">
+						<Scaling ux:Name="headerScaling"
+                     Factor="1.4" />
+					</Image>
+					<Text ux:Name="goodMorningText"
+                Value="Good Morning!"
+                FontSize="32"
+                Alignment="Center"
+                TextColor="#fff"
+                Opacity="0"/>
+					<Circle ux:Name="profile"
+                  Width="100"
+                  Height="100"
+                  Opacity="0">
+						<ImageFill File="assets/avatarhome.png" />
+						<Circle Alignment="TopRight"
+                    Width="25"
+                    Height="25"
+                    Fill="#0ff"
+                    Margin="5">
+							<Text Value="3"
+                    FontSize="10"
+                    Alignment="Center"
+                    TextColor="#fff" />
+						</Circle>
+						<Scaling ux:Name="profileScaling"
+                     Factor="0.1"/>
+					</Circle>
+					<Grid ux:Name="monthPanel"
+                ColumnCount="3"
+                Padding="20,0"
+                Opacity="0">
+						<Image File="assets/arrow.png"
+                   Width="20"
+                   Height="20"
+                   Alignment="Left"/>
+						<Text Value="FEBRUARY"
+                  Alignment="Center"
+                  TextColor="#fff"/>
+						<Image File="assets/arrow.png"
+                   Width="20"
+                   Height="20"
+                   Alignment="Right">
+							<Rotation Degrees="180" />
+						</Image>
+					</Grid>
+				</Grid>
+			</Grid>
+		</Panel>
+	</Panel>
 
-              <Rectangle ux:Name="greenButtonCancelLogin"
-                         Color="Red"
-                         LayoutMaster="loginCancelButtonCollapsed"
-                         CornerRadius="25"
-                         Opacity="0">
-        				<DropShadow />
-        				<WhileTrue ux:Name="showgreenButtonCancelLogin">
-        					<Change greenButtonCancelLogin.Opacity="1"
-                          Duration="0.2" />
-        				</WhileTrue>
-        			</Rectangle>
+	<WhileTrue ux:Name="loading">
+		<Change changeWidth.Value="true"
+            DelayBack="0"/>
+		<Change loadCircle.Value="true"
+            DelayBack="0"/>
 
-              <Rectangle ux:Name="greenButtonOkSignUp"
-                         Color="Green"
-                         LayoutMaster="signupSubmitButtonCollapsed"
-                         CornerRadius="25"
-                         Opacity="0">
-              <DropShadow />
-              <WhileTrue ux:Name="showgreenButtonOkSignUp">
-                <Change greenButtonOkSignUp.Opacity="1"
-                        Duration="0.2" />
-              </WhileTrue>
-              </Rectangle>
+		<Change scaleAndFade.Value="true"
+            Delay="2.5"
+            DelayBack="0"/>
+		<Change showLoggedIn.Value="true"
+            Delay="2.9" />
+	</WhileTrue>
+	<WhileTrue ux:Name="changeWidth">
+		<Change rectNormalScale.Width="60"
+            Duration=".5"
+            DurationBack="0"
+            Easing="CircularInOut"/>
+	</WhileTrue>
+	<WhileTrue ux:Name="loadCircle">
+		<Change text.Opacity="0"
+            Duration="0.2"
+            DurationBack="0"/>
+		<Change loadingCircle.Opacity="1"
+            Duration="0.3"
+            Delay="0.2"
+            DelayBack="0"
+            DurationBack="0"/>
+		<Spin Target="loadingCircle"
+          Frequency="2"/>
+		<Cycle Target="loadingCircle.LengthAngleDegrees"
+           Low="30"
+           High="300"
+           Frequency="0.7" />
+	</WhileTrue>
+	<WhileTrue ux:Name="scaleAndFade">
+		<Change loadingCirclePanel.Opacity="0"
+            Duration="0.1" />
+		<Change loadingButton.Opacity="1"
+            Duration="0.01" />
+		<Change rectNormalScale.Opacity="0"
+            Duration="0.01" />
 
-              <Rectangle ux:Name="greenButtonCancelSignUp"
-                         Color="Red"
-                         LayoutMaster="signupCancelButtonCollapsed"
-                         CornerRadius="25"
-                         Opacity="0">
-        				<DropShadow />
-        				<WhileTrue ux:Name="showgreenButtonCancelSignUp">
-        					<Change greenButtonCancelSignUp.Opacity="1"
-                          Duration="0.2" />
-        				</WhileTrue>
-        			</Rectangle>
-        		</Panel>
-<!-- Setting End -->
+		<Change loginButtonScaling.Factor="1"
+            Delay="0.01"
+            Duration="0.7"
+            DurationBack="0"
+            Easing="ExponentialInOut"/>
+	</WhileTrue>
+	<WhileTrue ux:Name="showLoggedIn">
+		<Change loggedInView.Opacity="1"
+            Delay="0.1"
+            Duration="0.65"
+            DurationBack="0.35"
+            DelayBack="0.3"
+            Easing="CubicInOut"/>
+		<Change plusButton.Opacity="1"
+            Delay="0.1"
+            Duration="0.65"
+            DurationBack="0.35"
+            DelayBack="0.3"
+            Easing="CubicInOut"/>
 
-<!-- Layer & Corner Settings Start -->
-            <Rectangle ux:Name="whiteContainerLogin"
-                       Color="White"
-                       LayoutMaster="loginButton"
-                       Layer="Background"
-                       CornerRadius="25" />
-        		<Rectangle ux:Name="whiteContainerSignUp"
-                       Color="White"
-                       LayoutMaster="signupButton"
-                       Layer="Background"
-                       CornerRadius="25" />
-        		<Attractor ux:Name="whiteContainerCornerRadiusAttractorLogin"
-                       Target="whiteContainerLogin.CornerRadius"
-                       Value="25" />
-            <Attractor ux:Name="whiteContainerCornerRadiusAttractorSignUp"
-                       Target="whiteContainerSignUp.CornerRadius"
-                       Value="25" />
-<!-- Layer & Corner Settings End -->
+		<Change goodMorningText.Opacity="1"
+            Duration="0.3"
+            Delay="0.3"/>
+		<Change monthPanel.Opacity="1"
+            Duration="0.3"
+            Delay="0.3"/>
 
-<!-- Logo Panel Start -->
-        		<HidingPanel ux:Name="logoPanel"
-                         Alignment="Top"
-                         Height="70%"
-                         IsEnabled="true"
-                         HitTestMode="None"
-                         Layer="Background">
-        			<StackPanel Alignment="Center">
+		<Change weekTranslation.Y="0"
+            Duration="0.8"
+            Easing="QuadraticInOut"/>
+		<Change weekScaling.Factor="1"
+            Duration="0.8"
+            Easing="QuadraticInOut"/>
+		<Change headerScaling.Factor="1"
+            Duration="0.6"
+            Easing="CircularInOut" />
+		<Change showPlusButton.Value="true" />
+		<RaiseUserEvent Name="ToggleLoggedIn" />
 
-        				<Image ux:Name="logo"
-                       File="assets/mountains.png"
-                       Width="50%" />
-                <StackPanel ux:Name="logoMockText"
-                            Alignment="VerticalCenter">
-          				<PrimaryColorText Alignment="HorizontalCenter"
-                                    FontSize="50">
-                    FuseR
-                  </PrimaryColorText>
-                  <Rectangle Color="TopGray"
-                             Width="60%"
-                             Height="10"
-                             CornerRadius="5"
-                             Margin="0,5,0,0" />
-                	<SecondaryColorText Alignment="HorizontalCenter"
-                                      Opacity=".5"
-                                      Margin="0,5,0,0">
-                    Fuse Boilerplate + rethinkDB API
-                  </SecondaryColorText>
-                  <Rectangle Color="BottomGray"
-                             Width="50%"
-                             Height="10"
-                             CornerRadius="5"
-                             Margin="0,5,0,0" />
-                </StackPanel>
+		<Change profile.Opacity="1"
+            Delay="0.7"
+            Duration="0.1"
+            DurationBack="0.2"
+            DelayBack="0"/>
+		<Change profileScaling.Factor="1"
+            Delay="0.7"
+            Duration="0.4"
+            Easing="CircularInOut"/>
+		<Change loggedInView.IsEnabled="true" />
+		<Change plusButton.IsEnabled="true" />
+	</WhileTrue>
 
-        			</StackPanel>
-        			<WhileTrue ux:Name="moveLogo">
-        				<Change logoMockText.Opacity="0"
-                        Duration="0.4" />
-        				<Move Target="logo"
-                      Y="-0.6"
-                      RelativeTo="Size"
-                      Duration="0.5"
-                      Delay="0.3"
-                      Easing="CubicInOut" />
-        			</WhileTrue>
-        			<WhileKeyboardVisible>
-        				<Change logoPanel.IsEnabled="false" />
-        			</WhileKeyboardVisible>
-        		</HidingPanel>
-<!-- Logo Panel End -->
+	<Grid ux:Name="loggedOutView"
+        Rows="1.5*,auto,1*"
+        Padding="40,0">
+		<Rectangle Layer="Background">
+			<ImageFill File="assets/bglogin.png"/>
+		</Rectangle>
 
-<!-- State Animations Start -->
-            <StateGroup ux:Name="state"
-                        Transition="Exclusive"
-                        Rest="initialState">
+		<Panel Row="2"
+           Width="150"
+           Height="60">
+			<Text ux:Name="text"
+            Alignment="Center"
+            Value="Sign in"
+            FontSize="18"
+            TextColor="#fff"/>
+			<Panel ux:Name="loadingCirclePanel">
+				<Circle ux:Name="loadingCircle"
+                Width="70%"
+                Height="70%"
+                Opacity="0"
+                StartAngleDegrees="0"
+                LengthAngleDegrees="90">
+					<Stroke Width="1"
+                  Brush="#fff" />
+				</Circle>
+			</Panel>
+			<Clicked>
+				<Toggle Target="loading" />
+			</Clicked>
+			<Rectangle ux:Name="rectNormalScale"
+                 CornerRadius="30"
+                 Fill="#FF3366"
+                 Width="300"
+                 Height="60"/>
+			<Panel ux:Name="loadingButton"
+             Opacity="0"
+             Width="1320"
+             Height="1320"
+             Alignment="Center">
+				<Circle Fill="#FF3366"/>
+				<Scaling ux:Name="loginButtonScaling"
+                 Factor="0.04545" />
+			</Panel>
+		</Panel>
 
-  <!-- Initial State Start -->
-            	<State Name="initialState">
+		<Image Row="0"
+           File="assets/marklogin.png"
+           Margin="40"/>
 
-            	  <Move Target="whiteContainerLogin"
-                      RelativeTo="PositionOffset"
-                      RelativeNode="loginButton"
-                      Vector="1"
-                      Duration="0.2"
-                      DurationBack="0"/>
-            		<Resize Target="whiteContainerLogin"
-                        RelativeTo="Size"
-                        RelativeNode="loginButton"
-                        Vector="1"
-                        Duration="0.2"
-                        DurationBack="0"/>
-            		<Move Target="greenButtonOkLogin"
-                      RelativeTo="PositionOffset"
-                      RelativeNode="loginSubmitButtonCollapsed"
-                      Vector="1"
-                      Duration="0.2"
-                      DurationBack="0"/>
-            		<Resize Target="greenButtonOkLogin"
-                        RelativeTo="Size"
-                        RelativeNode="loginSubmitButtonCollapsed"
-                        Vector="1"
-                        Duration="0.2"
-                        DurationBack="0"/>
-            		<Move Target="greenButtonCancelLogin"
-                      RelativeTo="PositionOffset"
-                      RelativeNode="loginSubmitButtonCollapsed"
-                      Vector="1"
-                      Duration="0.2"
-                      DurationBack="0"/>
-            		<Resize Target="greenButtonCancelLogin"
-                        RelativeTo="Size"
-                        RelativeNode="loginSubmitButtonCollapsed"
-                        Vector="1"
-                        Duration="0.2"
-                        DurationBack="0"/>
+		<Grid Row="1"
+          Padding="0,20"
+          RowCount="2"
+          Columns="auto,1*"
+          Height="160">
+			<Image Row="0"
+             Column="0"
+             File="assets/user_icon.png"
+             Width="20"
+             Height="20"
+             Margin="10,0,30,0"
+             Alignment="Left"/>
+			<TextInput ux:Name="loginEmail"
+                 Row="0"
+                 Column="1"
+                 PlaceholderText="Email"
+                 Value="{email}"
+                 PlaceholderColor="#999"
+                 TextColor="#fff"
+                 Opacity="1"
+                 Alignment="CenterLeft"/>
+			<Rectangle Row="0"
+                 Column="0"
+                 Alignment="Bottom"
+                 ColumnSpan="2"
+                 Height="1"
+                 Fill="#fff"/>
 
-                <Move Target="whiteContainerSignUp"
-                      RelativeTo="PositionOffset"
-                      RelativeNode="signupButton"
-                      Vector="1"
-                      Duration="0.2"
-                      DurationBack="0"/>
-                <Resize Target="whiteContainerSignUp"
-                        RelativeTo="Size"
-                        RelativeNode="signupButton"
-                        Vector="1"
-                        Duration="0.2"
-                        DurationBack="0"/>
-                <Move Target="greenButtonOkSignUp"
-                      RelativeTo="PositionOffset"
-                      RelativeNode="signupSubmitButtonCollapsed"
-                      Vector="1"
-                      Duration="0.2"
-                      DurationBack="0"/>
-            		<Resize Target="greenButtonOkSignUp"
-                        RelativeTo="Size"
-                        RelativeNode="signupSubmitButtonCollapsed"
-                        Vector="1"
-                        Duration="0.2"
-                        DurationBack="0"/>
-            		<Move Target="greenButtonCancelSignUp"
-                      RelativeTo="PositionOffset"
-                      RelativeNode="signupSubmitButtonCollapsed"
-                      Vector="1"
-                      Duration="0.2"
-                      DurationBack="0"/>
-            		<Resize Target="greenButtonCancelSignUp"
-                        RelativeTo="Size"
-                        RelativeNode="signupSubmitButtonCollapsed"
-                        Vector="1"
-                        Duration="0.2"
-                        DurationBack="0"/>
+			<Image Row="1"
+             Column="0"
+             File="assets/password_icon.png"
+             Width="20"
+             Height="20"
+             Margin="10,0,30,0"
+             Alignment="Left"/>
+			<TextInput ux:Name="loginPassword"
+                 Row="1"
+                 Column="1"
+                 PlaceholderText="Password"
+                 IsPassword="true"
+                 Value="{password}"
+                 PlaceholderColor="#999"
+                 TextColor="#fff"
+                 Opacity="1"
+                 Alignment="CenterLeft"/>
+			<Rectangle Row="1"
+                 Column="0"
+                 Alignment="Bottom"
+                 ColumnSpan="2"
+                 Height="1"
+                 Fill="#fff"/>
+		</Grid>
+    <WhileEnabled>
+			<Change loginEmail.Opacity="1"
+              Duration="0.4"
+              Delay="0.15" />
+			<Change loginPassword.Opacity="1"
+              Duration="0.4"
+              Delay="0.3" />
+		</WhileEnabled>
 
-                <Set whiteContainerLogin.LayoutMaster="loginButton"
-                     Delay="0.2"/>
-                <Set greenButtonOkLogin.LayoutMaster="loginSubmitButtonCollapsed"
-                     Delay="0.2"/>
-            		<Set greenButtonCancelLogin.LayoutMaster="loginSubmitButtonCollapsed"
-                     Delay="0.2"/>
-
-            		<Set whiteContainerSignUp.LayoutMaster="signupButton"
-                     Delay="0.2"/>
-            		<Set greenButtonOkSignUp.LayoutMaster="signupSubmitButtonCollapsed"
-                     Delay="0.2"/>
-            		<Set greenButtonCancelSignUp.LayoutMaster="signupSubmitButtonCollapsed"
-                     Delay="0.2"/>
-
-            		<Set whiteContainerCornerRadiusAttractorLogin.Value="25"/>
-            		<Set whiteContainerCornerRadiusAttractorSignUp.Value="25"/>
-
-            		<Set showgreenButtonOkLogin.Value="false" />
-                <Set showgreenButtonCancelLogin.Value="false" />
-
-                <Set showgreenButtonOkSignUp.Value="false" />
-                <Set showgreenButtonCancelSignUp.Value="false" />
-
-            		<Change startPanel.IsEnabled="true"
-                        DelayBack="0" />
-
-            		<Set moveLogo.Value="false" />
-            		<SendToBack Target="buttonPanel" />
-            	</State>
-  <!-- Initial State Start -->
-
-  <!-- Login State Start -->
-            	<State Name="loginFormState">
-            		<Set whiteContainerCornerRadiusAttractorLogin.Value="5"/>
-            		<Move Target="whiteContainerLogin"
-                      RelativeTo="PositionOffset"
-                      RelativeNode="loginForm"
-                      Vector="1"
-                      Duration="0.4"
-                      Delay="0.2"
-                      DurationBack="0"
-                      Easing="CubicInOut"/>
-            		<Resize Target="whiteContainerLogin"
-                        RelativeTo="Size"
-                        RelativeNode="loginForm"
-                        Vector="1"
-                        Duration="0.4"
-                        Delay="0.2"
-                        DurationBack="0"
-                        Easing="CubicInOut"/>
-            		<Move Target="greenButtonOkLogin"
-                      RelativeTo="PositionOffset"
-                      RelativeNode="loginSubmitButton"
-                      Vector="1"
-                      Duration="0.4"
-                      Delay="0.5"
-                      DurationBack="0"
-                      Easing="CubicInOut"/>
-            		<Resize Target="greenButtonOkLogin"
-                        RelativeTo="Size"
-                        RelativeNode="loginSubmitButton"
-                        Vector="1"
-                        Duration="0.4"
-                        Delay="0.5"
-                        DurationBack="0"
-                        Easing="CubicInOut"/>
-            		<Move Target="greenButtonCancelLogin"
-                      RelativeTo="PositionOffset"
-                      RelativeNode="loginCancelButton"
-                      Vector="1"
-                      Duration="0.4"
-                      Delay="0.5"
-                      DurationBack="0"
-                      Easing="CubicInOut"/>
-            		<Resize Target="greenButtonCancelLogin"
-                        RelativeTo="Size"
-                        RelativeNode="loginCancelButton"
-                        Vector="1"
-                        Duration="0.4"
-                        Delay="0.5"
-                        DurationBack="0"
-                        Easing="CubicInOut"/>
-
-            		<Set whiteContainerLogin.LayoutMaster="loginForm"
-                     Delay="0.6"/>
-            		<Set greenButtonOkLogin.LayoutMaster="loginSubmitButton"
-                     Delay="0.9"/>
-            		<Set greenButtonCancelLogin.LayoutMaster="loginCancelButton"
-                     Delay="0.9"/>
-
-            		<Change loginForm.IsEnabled="true"
-                        Delay="0.6"
-                        DelayBack="0"/>
-
-            		<Set showgreenButtonOkLogin.Value="true"
-                     Delay="0.5"/>
-            		<Set showgreenButtonCancelLogin.Value="true"
-                     Delay="0.5"/>
-            		<Set moveLogo.Value="true" />
-            	</State>
-  <!-- Login State End -->
-
-  <!-- SignUp State Start -->
-            	<State Name="signupFormState">
-            		<Set whiteContainerCornerRadiusAttractorSignUp.Value="5"/>
-            		<Move Target="whiteContainerSignUp"
-                      RelativeTo="PositionOffset"
-                      RelativeNode="signupForm"
-                      Vector="1"
-                      Duration="0.4"
-                      Delay="0.2"
-                      DurationBack="0"
-                      Easing="CubicInOut"/>
-            		<Resize Target="whiteContainerSignUp"
-                        RelativeTo="Size"
-                        RelativeNode="signupForm"
-                        Vector="1"
-                        Duration="0.4"
-                        Delay="0.2"
-                        DurationBack="0"
-                        Easing="CubicInOut"/>
-            		<Move Target="greenButtonOkSignUp"
-                      RelativeTo="PositionOffset"
-                      RelativeNode="signupSubmitButton"
-                      Vector="1"
-                      Duration="0.4"
-                      Delay="0.5"
-                      DurationBack="0"
-                      Easing="CubicInOut"/>
-            		<Resize Target="greenButtonOkSignUp"
-                        RelativeTo="Size"
-                        RelativeNode="signupSubmitButton"
-                        Vector="1"
-                        Duration="0.4"
-                        Delay="0.5"
-                        DurationBack="0"
-                        Easing="CubicInOut"/>
-
-            		<Set whiteContainerSignUp.LayoutMaster="signupForm"
-                     Delay="0.6"/>
-            		<Set greenButtonOkSignUp.LayoutMaster="signupSubmitButton"
-                     Delay="0.9"/>
-                <Set greenButtonCancelSignUp.LayoutMaster="signupCancelButton"
-                     Delay="0.9"/>
-
-            		<Change signupForm.IsEnabled="true"
-                        Delay="0.6"
-                        DelayBack="0"/>
-
-            		<Set showgreenButtonOkSignUp.Value="true"
-                     Delay="0.5"/>
-                <Set showgreenButtonCancelSignUp.Value="true"
-                     Delay="0.5"/>
-            		<Set moveLogo.Value="true" />
-            	</State>
-  <!-- SignUp State End -->
-
-            </StateGroup>
-<!-- State Animations End -->
-
-        	</ClientPanel>
-<!-- Body End -->
+	</Grid>
 </Page>

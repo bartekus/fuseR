@@ -1,14 +1,36 @@
 {
-  "RootNamespace":"",
+  "RootNamespace": "",
+  "InternalsVisibleTo": [],
   "Packages": [
-  	"Fuse",
-  	"FuseJS",
+    "Fuse",
+    "FuseJS",
+    "Fuse.Reactive",
     "Fuse.Controls",
-    "Fuse.Controls.MapView",
-    "Fuse.Maps",
-    "Fuse.GeoLocation"
+    "FuseCore"
+  ],
+  "Projects": [
+    "fuse_modules/bolav/fuse-modalview/modal_include.unoproj",
+    "fuse_modules/bolav/fuse-cachingimagesource/cachingimagesource_include.unoproj",
+    "fuse_modules/danmademe/fuse-fontawesome/danmademe_fontawesome_include.unoproj",
   ],
   "Includes": [
-    "*"
-  ]
+    "*",
+    "*.uno",
+    "*.ux",
+    "*.uxl",
+    "fusejs_lib/*.js:Bundle",
+    "store/channels.js:Bundle",
+    "store/contacts.js:Bundle",
+    "store/state.js:Bundle"
+  ],
+  "Excludes": [
+    "fuse_modules/"
+  ],
+  "FusePM": {
+    "Dependencies": [
+      "https://github.com/bolav/fuse-modalview",
+      "https://github.com/bolav/fuse-cachingimagesource",
+      "https://github.com/danmademe/fuse-fontawesome",
+    ]
+  }
 }

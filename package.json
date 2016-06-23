@@ -15,5 +15,8 @@
     "dev:ios": "cd ./app && fuse preview -t=iOS"
   },
   "author": "Bartek Kus <bartekus@gmail.com> (https://bartekus.com)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "socket.io-client": "^1.4.6"
+  }
 }

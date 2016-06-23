@@ -1,0 +1,95 @@
+<App ux:Class="FuseR"
+     ClearColor="1,1,1,1">
+
+  <Fuse.iOS.StatusBarConfig Style="Light" />
+
+  <Router ux:Name="router" />
+  <JavaScript File="app.js"/>
+
+  <Panel ux:Name="FullWindow"
+	       Layer="Overlay" />
+  <ResourceObject Key="FullWindow"
+	                Value="FullWindow" />
+
+ <Panel Layer="Background">
+   <ImageFill File="Assets/bg.jpg"
+            StretchMode="UniformToFill" />
+   <StatusBarBackground Dock="Top" />
+   <BottomFrameBackground Dock="Bottom" />
+ </Panel>
+
+<!--< Nav Title Start >-->
+	<Text ux:Class="Label"
+	      FontSize="32"
+				TextAlignment="Center"
+        Padding="2"
+        TextColor="#fff">
+	  <Font File="assets/fonts/AlegreyaSans-Bold.otf" />
+  </Text>
+<!--< Nav Title End >-->
+
+	<Panel ux:Class="TitleBar"
+				 Padding="4"/>
+
+	<Rectangle ux:Class="ListIcon"
+	           BoxSizing="FillAspect"
+						 Aspect="1"
+						 Color="Blue"
+		         CornerRadius="2"
+						 Margin="3"/>
+
+	<ClientPanel>
+		<WhileTrue Value="{loading}">
+			<Panel Layer="Overlay"
+			       HitTestMode="LocalBounds"
+						 ux:Name="BlockPanel">
+				<Circle Width="100"
+				        Height="100"
+								Alignment="Center"
+								LengthAngleDegrees="90"
+								StartAngleDegrees="0">
+					<Stroke Width="10"
+									Color="0.5,0.55,0.65,1"/>
+					<WhileVisible>
+						<Spin Frequency="0.5"/>
+					</WhileVisible>
+				</Circle>
+			</Panel>
+		</WhileTrue>
+
+		<EdgeNavigator ux:Name="TheEdge">
+
+			<WhileTrue Value="{login}">
+
+				<LeftSidebar Width="300"
+	                   ux:Name="leftMenu"
+	                   EdgeNavigation.Edge="Left"
+	                   router="router">
+
+	  			<ActivatingAnimation>
+						<Change MainNavPanel.Opacity="0.5"/>
+						<Move X="0"
+						      RelativeTo="ParentSize"/>
+	  			</ActivatingAnimation>
+	  		</LeftSidebar>
+
+				<!-- <RightSidebar Width="300"
+	                    ux:Name="rightMenu"
+	                    EdgeNavigation.Edge="Right">
+
+	  			<ActivatingAnimation>
+						<Change MainNavPanel.Opacity="0.5"/>
+						<Move X="0"
+						      RelativeTo="ParentSize"/>
+	  			</ActivatingAnimation>
+	  		</RightSidebar> -->
+			</WhileTrue>
+
+			<Panel ux:Name="MainNavPanel">
+				<ux:Include File="navigator.ux"/>
+			</Panel>
+
+		</EdgeNavigator>
+
+	</ClientPanel>
+</App>

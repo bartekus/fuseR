@@ -1,0 +1,53 @@
+<Panel ux:Class="LocalStorage">
+
+  <JavaScript File="storage.js" />
+
+<DockPanel>
+
+  <StackPanel Alignment="Center">
+    <Text Color="#FFF"
+          FontSize="24"
+          Value="{welcomeText}"
+          TextAlignment="Center"
+          TextWrapping="Wrap" />
+
+      <StackPanel ux:Name="enterTextArea"
+                  Opacity="0">
+        <Text Color="#FFF"
+              FontSize="20"
+              TextAlignment="Center"
+              Margin="0, 20, 0, 0">
+          Store a message?
+        </Text>
+  			<TextInput Value="{message}"
+                   TextAlignment="Center"
+                   PlaceholderText="message"
+                   Opacity="1"
+                   PlaceholderColor="#888" />
+        <Button Clicked="{saveMessage}"
+                Text="Save" />
+        <WhileFalse Value="{hasStored}">
+          <Change enterTextArea.Opacity="1"
+                  Duration="0.2" />
+        </WhileFalse>
+      </StackPanel>
+
+      <StackPanel ux:Name="textSubmittedArea"
+                  Opacity="0">
+        <Text Color="#FFF"
+              TextAlignment="Center"
+              FontSize="24"
+              Margin="0, 20, 0, 0"
+              TextWrapping="Wrap">
+          The string has been saved
+        </Text>
+
+        <WhileTrue Value="{hasStored}">
+          <Change textSubmittedArea.Opacity="1"
+                  Duration="0.2"
+                  Delay="0.2"/>
+        </WhileTrue>
+      </StackPanel>
+    </StackPanel>
+</DockPanel>
+</Panel>

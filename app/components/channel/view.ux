@@ -1,0 +1,15 @@
+<DockPanel Name="view" ux:Name="channelView">
+	<JavaScript File="view.js"/>
+	<StackPanel Alignment="Center">
+		<Text Value="Now in channel: " Color="#FFF" />
+		<Label Value="{channel.name}" />
+		<Button Text="Leave" Clicked="{goBack}" />
+	</StackPanel>
+
+	<StackPanel Dock="Right" Padding="10">
+		<Text Value="In Channel:" Color="#FFF" />
+		<Each Items="{channel.members}">
+			<Button Text="{}" Clicked="{goChat}"/>
+		</Each>
+	</StackPanel>
+</DockPanel>

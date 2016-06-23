@@ -1,0 +1,15 @@
+<Panel>
+	<JavaScript File="settings.js"/>
+		<ClientPanel>
+			<StackPanel>
+				<Text Color="#FFF">Welcome home</Text>
+				<Text Color="#FFF" Value="{loginUser.name}"/>
+
+				<Button Text="Log out" Clicked="{logout}" />
+
+			</StackPanel>
+
+	    <LocalStorage />
+
+	</ClientPanel>
+</Panel>

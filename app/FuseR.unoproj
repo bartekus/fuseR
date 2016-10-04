@@ -2,7 +2,10 @@
   "RootNamespace":"",
   "Packages": [
   	"Fuse",
-  	"FuseJS"
+  	"FuseJS",
+    "Fuse.Controls",
+    "Fuse.Maps",
+    "Fuse.GeoLocation"
   ],
   "Includes": [
     "*"

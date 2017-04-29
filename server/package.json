@@ -1,0 +1,36 @@
+{
+  "name": "fuser-server",
+  "version": "0.2.0",
+  "description": "fuseR - PostGraphQL Back-End Server",
+  "engines": {
+    "node": ">=7.8.0",
+    "npm": "^4.2.0"
+  },
+  "main": "server",
+  "scripts": {
+    "schema:1:build": "node scripts/buildSchema",
+    "schema:2:down": "psql -f data/schema-drop.sql",
+    "schema:3:up": "psql -f data/schema.sql",
+    "schema:4:data": "psql -f data/data.sql",
+    "postinstall": "npm-run-all schema:**",
+    "server": "node ./server",
+    "start": "concurrently \"npm run server\" \"npm run update-schema\"",
+    "update-schema": "node scripts/updateSchema"
+  },
+  "author": "Bartek Kus <bartekus@gmail.com> (https://bartekus.com)",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.16.1",
+    "concurrently": "^3.4.0",
+    "cors": "^2.8.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "fs-promise": "^2.0.2",
+    "graphql": "^0.9.3",
+    "npm-run-all": "^4.0.2",
+    "pg": "^6.1.5",
+    "postgraphql": "3.2.0",
+    "system-sleep": "^1.3.0"
+  },
+  "devDependencies": {}
+}

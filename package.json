@@ -1,0 +1,20 @@
+{
+  "name": "fuser",
+  "version": "0.2.0",
+  "private": true,
+  "description": "fuseR - FuseTools, ReactQL & PostGraphQL Framework",
+  "scripts": {
+    "install": "npm run install-server && npm run install-client",
+    "install-client": "cd ./client && npm install",
+    "install-server": "cd ./server && npm install",
+    "start-client": "cd ./client && npm start",
+    "start-client-prod": "cd ./client && npm run build-run",
+    "start-server": "cd ./server && npm start",
+    "build-client": "cd ./client && npm run build",
+    "serve-client": "cd ./client && npm run server",
+    "update-schema": "cd ./server && npm run update-schema"
+  },
+  "author": "Bartek Kus <bartekus@gmail.com> (https://bartekus.com)",
+  "repository": "git@github.com:Bartekus/FuseR.git",
+  "license": "MIT"
+}

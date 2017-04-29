@@ -15,6 +15,6 @@
     "update-schema": "cd ./server && npm run update-schema"
   },
   "author": "Bartek Kus <bartekus@gmail.com> (https://bartekus.com)",
-  "repository": "git@github.com:Bartekus/FuseR.git",
+  "repository": "git@github.com:Bartekus/fuseR.git",
   "license": "MIT"
 }

@@ -1,9 +1,0 @@
-{
-  "Packages": [
-    "Fuse",
-    "FuseJS"
-  ],
-  "Includes": [
-    "MyApp.ux:UXFile"
-  ]
-}

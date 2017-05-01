@@ -1,2 +1,4 @@
 .DS_Store
+.uno/
+node_modules/
 build/

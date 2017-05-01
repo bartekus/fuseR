@@ -1,0 +1,3 @@
+'use strict';
+
+module.exports = require('fusejs_lib/symbol-observable.js');

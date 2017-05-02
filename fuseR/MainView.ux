@@ -1,82 +1,82 @@
 <App>
-	<ClientPanel>
-		<Page ux:Class="PageWithTitle" ux:Name="self" HitTestMode="LocalBoundsAndChildren">
-			<DockLayout />
-			<float4 ux:Property="HeaderColor" />
-			<float4 ux:Property="HeaderTextColor" />
-			<string ux:Property="Instructions" />
-			<StackPanel Dock="Top">
-				<Panel Color="{Property self.HeaderColor}" Height="45">
-					<Text Value="{Property self.Title}" FontSize="22"
-						  Alignment="Center" TextColor="{Property self.HeaderTextColor}"/>
-				</Panel>
-			</StackPanel>
-			<Panel Height="10%" Color="#0008" Alignment="Bottom">
-				<WhileActive Invert="true" Threshold="0.4">
-					<Move RelativeTo="Size" Y="1" Duration="0.4" Easing="CircularInOut"/>
-				</WhileActive>
-				<Text Value="{Property self.Instructions}" Margin="20" TextColor="#fff" Alignment="Center" />
-			</Panel>
-		</Page>
-		<PageControl>
-			<PageWithTitle Title="Basic animation" HeaderColor="#595FFF" HeaderTextColor="#fff"
-						   Color="#FEFDFC" Instructions="Tap and hold the rectangle">
-				<Panel>
-					<Rectangle ux:Name="myRectangle" Color="#4894E5" Width="80" Height="80" CornerRadius="0">
-						<WhilePressed>
-							<Rotate Degrees="45" Easing="CubicInOut" Duration="0.5" />
-							<Scale  Factor="2"   Easing="CubicInOut" Duration="0.5" />
-							<Change myRectangle.Color="#FC5185"      Duration="0.3" />
-							<Change myRectangle.CornerRadius="15" 	 Duration="0.3" />
-						</WhilePressed>
-					</Rectangle>
-				</Panel>
-			</PageWithTitle>
-			<PageWithTitle Title="Logic with JavaScript" HeaderColor="#F68FD7" HeaderTextColor="#FFF" Color="#FFF"
-						   Instructions="Tap the screen to add items" >
-				<JavaScript>
-					var Observable = require('FuseJS/Observable');
-					items = Observable();
-					function addItem(){
-						items.add({
-							color : [Math.random(), Math.random(), Math.random(), 1],
-							height : (Math.random() + 1.0) * 80
-						});
-					}
-					module.exports = {
-						items : items,
-						addItem : addItem
-					};
-				</JavaScript>
-				<Panel Tapped="{addItem}">
-					<ScrollView>
-						<Panel>
-							<ColumnLayout ColumnCount="3"/>
-							<Each Items="{items}">
-								<Rectangle ux:Name="item" Color="{color}" Height="{height}" Margin="5" CornerRadius="5">
-									<AddingAnimation>
-										<Change item.Opacity="0" Duration="0.3" />
-									</AddingAnimation>
-								</Rectangle>
-							</Each>
-						</Panel>
-					</ScrollView>
-				</Panel>
-			</PageWithTitle>
-			<PageWithTitle Title="Realtime effects" HeaderColor="#2CAE3F" HeaderTextColor="#fff"
-						   Color="#FFF" Instructions="Use the slider to blur the logo">
-				<Grid RowCount="2">
-					<Image File="Assets/fuseR.png" Color="#000">
-						<Blur ux:Name="myBlur" Radius="0"/>
-					</Image>
-					<Slider Margin="40,0" Alignment="VerticalCenter">
-						<ProgressAnimation>
-							<Change myBlur.Radius="10" />
-						</ProgressAnimation>
-					</Slider>
-				</Grid>
-			</PageWithTitle>
-		</PageControl>
-	</ClientPanel>
-</App>
+    <Router ux:Name="router" />
 
+    <DockPanel>
+        <JavaScript File="src/MainView.js" />
+
+        <StackPanel Dock="Top" Background="#3CB5D0">
+            <StatusBarBackground/>
+            <Fuse.iOS.StatusBarConfig Style="Light"/>
+            <Panel ux:Name="navBar" Dock="Top" Height="50">
+                <WhileCanGoBack>
+                    <Panel ux:Name="backButton" Width="90" Height="50" Alignment="Left"
+                           Padding="20,0,0,0" HitTestMode="LocalBounds">
+                        <DockPanel>
+                            <Image File="assets/icons/arrow-left-white.png" Height="20" Color="#fff" Dock="Left"/>
+                        </DockPanel>
+                        <AddingAnimation>
+                            <Change backButton.Opacity="0" Duration=".3" />
+                        </AddingAnimation>
+                        <RemovingAnimation>
+                            <Change backButton.Opacity="0" Duration=".3" />
+                        </RemovingAnimation>
+                        <Clicked>
+                            <GoBack />
+                        </Clicked>
+                    </Panel>
+                </WhileCanGoBack>
+            </Panel>
+            <Shadow />
+        </StackPanel>
+
+        <BottomBarBackground Dock="Bottom" />
+
+        <Panel ux:Class="NewsItem" Clicked="{clicked}">
+            <Deferred>
+                <StackPanel ItemSpacing="10" Margin="15">
+                    <Text Value="{title}" TextWrapping="Wrap" FontSize="20" />
+                    <DockPanel>
+                        <Text Value="{summary}" TextWrapping="Wrap" FontSize="13" />
+                        <WhileString Value="{image}" Test="IsNotEmpty">
+                            <Panel Dock="Left">
+                                <Image Url="{image}" Width="80" Margin="0,0,10,0" Alignment="TopLeft" />
+                            </Panel>
+                        </WhileString>
+                    </DockPanel>
+                    <DockPanel>
+                        <WhileString Value="{firstName}" Test="IsNotEmpty">
+                            <Text Value="by {firstName}" FontSize="10" Color="#999" Dock="Left" />
+                            <Text Value="{lastName}" Margin="3,0,0,0" FontSize="10" Color="#999" />
+                        </WhileString>
+                        <Text Value="Published On: " Margin="0,0,190,0" FontSize="10" Color="#999" Dock="Right" />
+                        <Text Value="{createdAt}" MaxLength="10" Margin="0,0,-120,0" FontSize="10" Color="#999" Dock="Right" />
+                        <Text Value="Modified On: " Margin="0,0,-125,0" FontSize="10" Color="#999" Dock="Right" />
+                        <Text Value="{updatedAt}" MaxLength="10" Margin="0,0,-115,0" FontSize="10" Color="#999" Dock="Right" />
+                    </DockPanel>
+                </StackPanel>
+                <Rectangle Color="#FFF" />
+            </Deferred>
+        </Panel>
+
+        <Navigator DefaultPath="mainPage">
+            <Page ux:Template="mainPage">
+                <ScrollView>
+                    <StackPanel ItemSpacing="1">
+                        <Each Items="{pages}">
+                            <NewsItem />
+                        </Each>
+                    </StackPanel>
+                </ScrollView>
+
+                <AlternateRoot ParentNode="navBar">
+                    <NavBarTitle>
+                      fuseR
+                    </NavBarTitle>
+                </AlternateRoot>
+            </Page>
+
+            <SubPage ux:Template="subPage" navBar="navBar" />
+        </Navigator>
+
+    </DockPanel>
+</App>

@@ -1,10 +1,18 @@
 {
-  "RootNamespace":"",
+  "RootNamespace": "",
   "Packages": [
     "Fuse",
     "FuseJS"
   ],
   "Includes": [
-    "*"
+    "*",
+    "MainView.ux:UXFile",
+    "views/NavBarTitle.ux:UXFile",
+    "views/SubPage.ux:UXFile",
+    "src/MainView.js:Bundle",
+    "build/Libs/ApolloClient.js:Bundle",
+    "build/Libs/createNetworkInterface.js:Bundle",
+    "build/Libs/Redux.js:Bundle",
+    "fusejs_lib/*.js:Bundle"
   ]
 }

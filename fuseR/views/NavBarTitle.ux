@@ -1,0 +1,10 @@
+<Text ux:Class="NavBarTitle" HitTestMode="None" Alignment="Center" FontSize="15" TextColor="#FFF">
+    <EnteringAnimation>
+        <Move X="50" Duration="0.35" Easing="CubicInOut" />
+        <Change this.Opacity="0" Duration="0.25" Easing="CubicIn" />
+    </EnteringAnimation>
+    <ExitingAnimation>
+        <Move X="-50" Duration="0.35" Easing="CubicInOut" />
+        <Change this.Opacity="0" Duration="0.25" Easing="CubicIn" />
+    </ExitingAnimation>
+</Text>

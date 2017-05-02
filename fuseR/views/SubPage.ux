@@ -1,0 +1,75 @@
+<Page ux:Class="SubPage">
+
+    <JavaScript>
+        exports.id = this.Parameter.map(function(param) {
+            return param.id;
+        });
+        exports.title = this.Parameter.map(function(param) {
+            return param.title;
+        });
+        exports.firstName = this.Parameter.map(function(param) {
+            return param.firstName;
+        });
+        exports.lastName = this.Parameter.map(function(param) {
+            return param.lastName;
+        });
+        exports.createdAt = this.Parameter.map(function(param) {
+            return param.createdAt;
+        });
+        exports.updatedAt = this.Parameter.map(function(param) {
+            return param.updatedAt;
+        });
+        exports.body = this.Parameter.map(function(param) {
+            return param.body;
+        });
+    </JavaScript>
+
+    <ScrollView>
+        <StackPanel Margin="0,0,0,0">
+            <Panel ux:Class="VerticalBar" Margin="8,0,8,2" Alignment="VerticalCenter">
+                <Rectangle Height="12" Width="2" Color="#dcdee3" />
+            </Panel>
+
+            <!-- Text -->
+            <Text ux:Class="SubText" Margin="0,0,5,0" MaxLength="10" Alignment="Left" FontSize="12" Color="#7a96b2" />
+            <Text ux:Class="Article" Margin="14,0,14,0" TextWrapping="Wrap" FontSize="13">
+                <Font File="./../assets/fonts/Lato-Regular.ttf" />
+            </Text>
+            <Text ux:Class="Name" Margin="0,10,5,0" FontSize="15">
+                <Font File="./../assets/fonts/Roboto-Bold.ttf" />
+            </Text>
+
+            <!-- The header -->
+            <DockPanel Margin="10,0,0,15">
+                <DockPanel Margin="10,0,10,0">
+                    <StackPanel Dock="Top" Orientation="Horizontal">
+                        <Name Value="{firstName}" />
+                        <Name Value="{lastName}" />
+                    </StackPanel>
+                    <StackPanel Dock="Bottom" Orientation="Horizontal">
+                        <SubText Value="PostID:" />
+                        <SubText Value="{id}" />
+                        <VerticalBar />
+                        <SubText Value="Created:" />
+                        <SubText Value="{createdAt}" />
+                        <VerticalBar />
+                        <SubText Value="Updated:" />
+                        <SubText Value="{updatedAt}" />
+                    </StackPanel>
+                </DockPanel>
+            </DockPanel>
+
+            <!-- Main article body -->
+            <Article Value="{body}" />
+
+        </StackPanel>
+    </ScrollView>
+
+    <Visual ux:Dependency="navBar" />
+
+    <Panel>
+        <AlternateRoot ParentNode="navBar">
+            <NavBarTitle Value="{title}" />
+        </AlternateRoot>
+    </Panel>
+</Page>

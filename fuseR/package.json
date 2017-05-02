@@ -8,10 +8,11 @@
   },
   "main": "src/",
   "scripts": {
+    "postinstall": "npm install -G fusepm && npm run build",
     "prebuild": "npm run clean",
     "clean": "rimraf build/Libs",
     "build": "webpack -p",
-    "start": "webpack"
+    "start": "fuse preview"
   },
   "author": "Bartek Kus <bartekus@gmail.com> (https://bartekus.com)",
   "license": "MIT",
@@ -21,15 +22,11 @@
     "redux": "^3.6.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.22.0",
-    "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.1.8",
-    "babel-register": "^6.24.1",
-    "fusepm": "^0.2.6",
     "progress-bar-webpack-plugin": "^1.9.3",
     "rimraf": "^2.6.1",
     "webpack": "^2.4.1"

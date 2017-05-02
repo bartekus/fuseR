@@ -2,11 +2,11 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-  watch: true,
+  // watch: true,
   entry: {
-    ApolloClient: './config/apollo-client.js',
-    GraphqlTag: './config/graphql-tag.js',
-    Redux: './config/redux.js',
+    ApolloClient: './config/ApolloClient.js',
+    createNetworkInterface: './config/createNetworkInterface.js',
+    Redux: './config/Redux.js',
   },
   output: {
     path: path.join(__dirname, 'build/Libs'),

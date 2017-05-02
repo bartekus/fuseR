@@ -1,39 +1,82 @@
 <App>
+    <Router ux:Name="router" />
 
     <DockPanel>
-        <JavaScript File="src/index.js" />
-        	<Text Value="{test}" />
+        <JavaScript File="src/MainView.js" />
 
-        <StatusBarBackground Dock="Top" />
-        <BottomFrameBackground Dock="Bottom" />
-
-        <StackPanel Dock="Top">
-            <Text FontSize="28" Alignment="VerticalCenter"
-                TextAlignment="Center" Padding="2"
-                Value="NEWS" />
-            <Rectangle Height="1" Margin="0,3,0,0" Fill="#333c48" />
+        <StackPanel Dock="Top" Background="#3CB5D0">
+            <StatusBarBackground/>
+            <Fuse.iOS.StatusBarConfig Style="Light"/>
+            <Panel ux:Name="navBar" Dock="Top" Height="50">
+                <WhileCanGoBack>
+                    <Panel ux:Name="backButton" Width="90" Height="50" Alignment="Left"
+                           Padding="20,0,0,0" HitTestMode="LocalBounds">
+                        <DockPanel>
+                            <Image File="assets/icons/arrow-left-white.png" Height="20" Color="#fff" Dock="Left"/>
+                        </DockPanel>
+                        <AddingAnimation>
+                            <Change backButton.Opacity="0" Duration=".3" />
+                        </AddingAnimation>
+                        <RemovingAnimation>
+                            <Change backButton.Opacity="0" Duration=".3" />
+                        </RemovingAnimation>
+                        <Clicked>
+                            <GoBack />
+                        </Clicked>
+                    </Panel>
+                </WhileCanGoBack>
+            </Panel>
+            <Shadow />
         </StackPanel>
 
-        <Text ux:Class="Header" Margin="10,10,10,5" TextWrapping="Wrap" FontSize="22" />
-        <Text ux:Class="Article" Margin="10,0,10,0" TextWrapping="Wrap" FontSize="13" />
-        <Text ux:Class="PublishedDate" Margin="10,0,10,0" FontSize="13" Color="#999" />
+        <BottomBarBackground Dock="Bottom" />
 
-        <ScrollView>
-            <StackPanel Alignment="Top">
-                <Panel Height="7" />
-                <Each Items="{queryResult.data.allPosts.edges}">
-                    <Panel ux:Class="HorizontalBar" Margin="46,10,0,10"
-                            Alignment="VerticalCenter">
-                        <Rectangle Height="1" Fill="#dcdee3" />
-                    </Panel>
+        <Panel ux:Class="NewsItem" Clicked="{clicked}">
+            <Deferred>
+                <StackPanel ItemSpacing="10" Margin="15">
+                    <Text Value="{title}" TextWrapping="Wrap" FontSize="20" />
+                    <DockPanel>
+                        <Text Value="{summary}" TextWrapping="Wrap" FontSize="13" />
+                        <WhileString Value="{image}" Test="IsNotEmpty">
+                            <Panel Dock="Left">
+                                <Image Url="{image}" Width="80" Margin="0,0,10,0" Alignment="TopLeft" />
+                            </Panel>
+                        </WhileString>
+                    </DockPanel>
+                    <DockPanel>
+                        <WhileString Value="{firstName}" Test="IsNotEmpty">
+                            <Text Value="by {firstName}" FontSize="10" Color="#999" Dock="Left" />
+                            <Text Value="{lastName}" Margin="3,0,0,0" FontSize="10" Color="#999" />
+                        </WhileString>
+                        <Text Value="Published On: " Margin="0,0,190,0" FontSize="10" Color="#999" Dock="Right" />
+                        <Text Value="{createdAt}" MaxLength="10" Margin="0,0,-120,0" FontSize="10" Color="#999" Dock="Right" />
+                        <Text Value="Modified On: " Margin="0,0,-125,0" FontSize="10" Color="#999" Dock="Right" />
+                        <Text Value="{updatedAt}" MaxLength="10" Margin="0,0,-115,0" FontSize="10" Color="#999" Dock="Right" />
+                    </DockPanel>
+                </StackPanel>
+                <Rectangle Color="#FFF" />
+            </Deferred>
+        </Panel>
 
-                    <Header Value="{node.id}" />
-                    <Article Value="{node.headline}" />
-                     <PublishedDate Value="{node.body}" />
-                    <HorizontalBar />
-                </Each>
-            </StackPanel>
-        </ScrollView>
+        <Navigator DefaultPath="mainPage">
+            <Page ux:Template="mainPage">
+                <ScrollView>
+                    <StackPanel ItemSpacing="1">
+                        <Each Items="{pages}">
+                            <NewsItem />
+                        </Each>
+                    </StackPanel>
+                </ScrollView>
+
+                <AlternateRoot ParentNode="navBar">
+                    <NavBarTitle>
+                      fuseR
+                    </NavBarTitle>
+                </AlternateRoot>
+            </Page>
+
+            <SubPage ux:Template="subPage" navBar="navBar" />
+        </Navigator>
 
     </DockPanel>
 </App>

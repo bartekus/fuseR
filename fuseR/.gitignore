@@ -2,3 +2,4 @@
 .uno/
 node_modules/
 build/
+fusejs_lib/
